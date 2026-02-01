@@ -11,9 +11,21 @@ export class GhostStoriesRepository {
     private ghostStoryModel: Model<GhostStory>,
   ) {}
 
-  async createGhostStory(dto: CreateGhostStoryDTO) {
-    const doc = new this.ghostStoryModel(dto);
-    const save = await doc.save();
-    return save;
+    async createGhostStory(dto: CreateGhostStoryDTO) {
+        const session = await this.ghostStoryModel.db.startSession();
+        session.startTransaction();
+
+        try {
+            const doc = new this.ghostStoryModel(dto);
+            const saved = await doc.save({ session });
+
+            await session.commitTransaction();
+            session.endSession();
+            return saved;
+        } catch (err) {
+            await session.abortTransaction();
+            session.endSession();
+            throw err;
+        }
   }
 }
