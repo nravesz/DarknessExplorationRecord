@@ -11,8 +11,9 @@ export class GhostStoriesService {
         private ghostStoryModel: Model<GhostStory>
     ) {}
 
-    createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO) {
+    async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO) {
         const newGhostStory = new this.ghostStoryModel(createGhostStoryDTO);
-        return newGhostStory.save();
+        const saved = await newGhostStory.save();
+        return saved;
     }
 }

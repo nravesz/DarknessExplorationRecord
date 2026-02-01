@@ -7,10 +7,12 @@ export class GhostStoriesController {
     constructor(private ghostStoriesService: GhostStoriesService) {}
 
     @Post()
-    createGhostStory(
+    async createGhostStory(
         @Body()
         createGhostStoryDTO : CreateGhostStoryDTO
     ) {
         console.log(createGhostStoryDTO);
+        const ghostStory = await this.ghostStoriesService.createGhostStory(createGhostStoryDTO);;
+        return ghostStory;
     }
 }
