@@ -1,0 +1,5 @@
+# Get all ghost stories
+GET http://localhost:3000/ghost-stories
+Accept: application/json
+
+###
