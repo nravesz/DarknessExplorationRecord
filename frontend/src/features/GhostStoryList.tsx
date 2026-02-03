@@ -1,9 +1,9 @@
-import { useGhostStories } from "../hooks/useGhostStory";
+import { useGhostStories } from '../hooks/useGhostStory';
 
 interface IGhostStory {
-	_id: string;
-	class: string;
-	name: string;
+  _id: string;
+  class: string;
+  name: string;
 }
 
 function GhostStoryList() {
