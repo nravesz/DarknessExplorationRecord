@@ -18,4 +18,9 @@ export class UserService {
 
         return this.repository.create(newUser);
     }
+
+    async findByEmail(email: string)
+    {
+        return this.repository.findByEmail(email);
+    }
 }

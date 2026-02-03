@@ -1,19 +1,18 @@
-import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { User } from "./user.schema";
-import { Model } from "mongoose";
-import { CreateUserDTO } from "./dto/create-user.dto";
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { User } from './user.schema';
+import { Model } from 'mongoose';
+import { CreateUserDTO } from './dto/create-user.dto';
 
 @Injectable()
 export class UserRepository {
-    constructor(
-        @InjectModel(User.name)
-        private userModel: Model<User>
-    ) {}
+	constructor(
+		@InjectModel(User.name)
+		private userModel: Model<User>
+	) {}
 
-    async create(createUserDTO: CreateUserDTO)
-    {
-        const session = await this.userModel.db.startSession();
+	async create(createUserDTO: CreateUserDTO) {
+		const session = await this.userModel.db.startSession();
 		session.startTransaction();
 
 		try {
@@ -28,5 +27,22 @@ export class UserRepository {
 			session.endSession();
 			throw err;
 		}
-    }
+	}
+
+	async findByEmail(email: string) {
+		const session = await this.userModel.db.startSession();
+		session.startTransaction();
+
+		try {
+			const doc = this.userModel.findOne({ email }).session(session);
+
+			await session.commitTransaction();
+			session.endSession();
+			return doc;
+		} catch (err) {
+			await session.abortTransaction();
+			session.endSession();
+			throw err;
+		}
+	}
 }
