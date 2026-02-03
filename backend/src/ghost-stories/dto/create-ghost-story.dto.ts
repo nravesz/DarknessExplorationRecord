@@ -1,12 +1,12 @@
-import { IsEnum, IsNotEmpty, IsString } from "class-validator";
-import { GhostClass } from "../enums/ghost-stories.enum";
+import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { GhostClass } from '../enums/ghost-stories.enum';
 
 export class CreateGhostStoryDTO {
-    @IsNotEmpty()
-    @IsString()
-    name: string;
+	@IsNotEmpty()
+	@IsString()
+	name: string;
 
-    @IsNotEmpty()
-    @IsEnum(GhostClass)
-    class: GhostClass
+	@IsNotEmpty()
+	@IsEnum(GhostClass)
+	class: GhostClass;
 }
