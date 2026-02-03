@@ -1,10 +1,33 @@
-function GhostStoryList() {
-	const items = [
-		["D","Tuesday Show"],
-		["A", "Hell Taxi"]
-	]
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-	const handleClick = (event: MouseEvent) => console.log(event);
+interface IGhostStory {
+	_id: string;
+	class: string;
+	name: string;
+}
+
+function GhostStoryList() {
+	const [stories, setStories] = useState<IGhostStory[]>([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		const fetchGhostStories = async () => {
+			try {
+				const response = await axios.get<IGhostStory[]>('http://localhost:3000/ghost-stories');
+				setStories(response.data);
+			} catch (err: any) {
+				setError(err.message || 'Error al obtener ghost stories');
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchGhostStories();
+	});
+
+	if (loading) return <p>Cargando...</p>;
+	if (error) return <p>Error: {error}</p>;
 
 	return (
 		<>
@@ -17,15 +40,16 @@ function GhostStoryList() {
 					</tr>
 				</thead>
 				<tbody>
-					{items.map((item, index) => 
+					{stories.map((story) => (
 						<tr
-							key={index}
-							onClick={(event) => console.log(event)}
+							key={story._id}
+							onClick={() => console.log('Clicked story:', story)}
+							className="hover:bg-gray-100 cursor-pointer"
 						>
-							<td className="border border-gray-300 ...">{item[0]}</td>
-							<td className="border border-gray-300 ...">{item[1]}</td>
+							<td className="border border-gray-300">{story.class}</td>
+							<td className="border border-gray-300">{story.name}</td>
 						</tr>
-					)}
+					))}
 				</tbody>
 			</table>
 		</>
