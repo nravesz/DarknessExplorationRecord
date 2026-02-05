@@ -12,13 +12,13 @@ export class AuthService {
 		private jwtService: JwtService
 	) {}
 
-	async login(createUserDTO: CreateUserDTO) {
+	async login(createUserDTO: CreateUserDTO): Promise<LoginResponseDTO> {
 		const user = await this.validateUser(createUserDTO);
 		if (!user) {
 			throw new UnauthorizedException('Invalidate credentials');
 		}
 		const payload = {
-			sub: user._id,
+			sub: user.id,
 			email: user.email,
 		};
 		const doc: LoginResponseDTO = {
@@ -27,7 +27,10 @@ export class AuthService {
 		return doc;
 	}
 
-	async validateUser(createUserDTO: CreateUserDTO) {
+
+	async validateUser(
+		createUserDTO: CreateUserDTO
+	): Promise<{ id: string; email: string } | null> {
 		const user = await this.usersService.findByEmail(createUserDTO.email);
 		if (!user) return null;
 
