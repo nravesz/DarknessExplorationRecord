@@ -30,19 +30,6 @@ export class UserRepository {
 	}
 
 	async findByEmail(email: string) {
-		const session = await this.userModel.db.startSession();
-		session.startTransaction();
-
-		try {
-			const doc = this.userModel.findOne({ email }).session(session);
-
-			await session.commitTransaction();
-			session.endSession();
-			return doc;
-		} catch (err) {
-			await session.abortTransaction();
-			session.endSession();
-			throw err;
-		}
+		return this.userModel.findOne({ email });
 	}
 }

@@ -9,3 +9,14 @@ Accept: application/json
 }
 
 ###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "agente.yaguarete@gmail.com",
+    "password": "123456"
+}
+
+###
