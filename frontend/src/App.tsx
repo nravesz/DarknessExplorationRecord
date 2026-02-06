@@ -1,11 +1,7 @@
-import GhostStoryList from './features/GhostStoryList';
+import SideBar from './features/SideBar';
 
 function App() {
-  return (
-    <div>
-      <GhostStoryList />
-    </div>
-  );
+  return <SideBar />;
 }
 
 export default App;
