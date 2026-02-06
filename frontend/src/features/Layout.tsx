@@ -3,9 +3,11 @@ import SideBar from './SideBar';
 
 function Layout() {
   return (
-    <div className="">
+    <div className="flex">
       <SideBar />
-      <Outlet />
+      <div className="flex-1">
+        <Outlet />
+      </div>
     </div>
   );
 }
