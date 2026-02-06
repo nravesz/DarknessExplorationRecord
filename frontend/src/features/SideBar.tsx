@@ -1,5 +1,4 @@
-import { Home, User, Settings, LogIn } from "lucide-react";
-
+import { Home, User, Settings, LogIn } from 'lucide-react';
 
 function SideBar() {
   return (
@@ -13,7 +12,7 @@ function SideBar() {
       <button className="mb-4 p-2 rounded hover:bg-base-300">
         <Settings size={24} />
       </button>
-			<button className="mb-4 p-2 rounded hover:bg-base-300">
+      <button className="mb-4 p-2 rounded hover:bg-base-300">
         <LogIn size={24} />
       </button>
     </div>
