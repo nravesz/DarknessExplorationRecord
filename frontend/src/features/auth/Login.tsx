@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLogin } from './login.hooks';
 import Button from '../common/Button';
+import type { ILoginPayload } from './interfaces/login-payload.interface';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -9,7 +10,8 @@ function Login() {
   const { mutate, isPending, error } = useLogin();
 
   const handleClick = () => {
-    mutate({ email, password });
+    const payload: ILoginPayload = { email, password };
+    mutate(payload);
   };
 
   return (
