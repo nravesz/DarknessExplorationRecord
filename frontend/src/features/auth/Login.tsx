@@ -15,25 +15,27 @@ function Login() {
   };
 
   return (
-    <>
-      <input
-        type="text"
-        placeholder="Email"
-        className="input"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="flex flex-col items-center gap-3">
+        <input
+          type="text"
+          placeholder="Email"
+          className="input"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <input
-        type="text"
-        placeholder="Email"
-        className="input"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          type="text"
+          placeholder="Password"
+          className="input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <Button label={isPending ? 'Logging in...' : 'Login'} onClick={handleClick} />
-    </>
+        <Button label={isPending ? 'Logging in...' : 'Login'} onClick={handleClick} />
+      </div>
+    </div>
   );
 }
 

@@ -5,7 +5,7 @@ interface Props {
 
 function Button({ label, onClick }: Props) {
   return (
-    <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl" onClick={onClick}>
+    <button className="btn" onClick={onClick}>
       {label}
     </button>
   );
