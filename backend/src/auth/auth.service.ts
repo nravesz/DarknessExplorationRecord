@@ -21,12 +21,21 @@ export class AuthService {
 			sub: user.id,
 			email: user.email,
 		};
+
+		const accessToken = this.jwtService.sign(payload, {
+			expiresIn: '15m',
+		});
+
+		const refreshToken = this.jwtService.sign(payload, {
+			expiresIn: '7d',
+		});
+
 		const doc: LoginResponseDTO = {
-			accessToken: this.jwtService.sign(payload),
+			accessToken,
+			refreshToken,
 		};
 		return doc;
 	}
-
 
 	async validateUser(
 		createUserDTO: CreateUserDTO
