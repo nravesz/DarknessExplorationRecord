@@ -11,8 +11,8 @@ function SideBarButton({ name, icon: Icon, route }: Props) {
   const navigate = useNavigate();
 
   return (
-    <button className="w-4/5 mb-4 p-2 rounded hover:bg-base-300" onClick={() => navigate(route)}>
-      <div className="flex flex-row">
+    <button className="w-4/5 pl-4 p-2 rounded hover:bg-base-300" onClick={() => navigate(route)}>
+      <div className="flex flex-row space-x-2">
         <Icon size={24} />
         <div>{name}</div>
       </div>
