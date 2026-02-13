@@ -1,3 +1,5 @@
+import FileSummary from "./FileSummary";
+
 function GhostStory() {
   return (
 	<div>
@@ -8,12 +10,7 @@ function GhostStory() {
 
 		<div className="divider"></div>
 
-		<div>
-			<div>ID: Qterw-D-43</div>
-			<div>Class: D</div>
-			<div>It has a procedure manual: yes</div>
-			<div>User access level: add records</div>
-		</div>
+		<FileSummary />
 
 		<div className="divider"></div>
 
