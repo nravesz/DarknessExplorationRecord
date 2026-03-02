@@ -1,4 +1,5 @@
 import FileSummary from "./FileSummary";
+import TabBar from "./TabBar";
 
 function GhostStory() {
   return (
@@ -8,7 +9,11 @@ function GhostStory() {
 			<h1 className="text-4xl font-bold">Qterw-D-43</h1>
 		</div>
 
+		<div>Overview Description Manual Records</div>
+
 		<div className="divider"></div>
+
+		<TabBar />
 
 		<FileSummary />
 
@@ -16,7 +21,7 @@ function GhostStory() {
 
 		<div>Description</div>
 
-		<div>Manual to deal with this story</div>
+		<div>Procedure Manual </div>
 
 		<div>Darkness Exploration Records</div>
 	</div>);
