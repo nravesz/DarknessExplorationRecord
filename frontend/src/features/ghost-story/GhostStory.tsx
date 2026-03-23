@@ -17,13 +17,6 @@ function GhostStory() {
 
 		<FileSummary />
 
-		<div className="divider"></div>
-
-		<div>Description</div>
-
-		<div>Procedure Manual </div>
-
-		<div>Darkness Exploration Records</div>
 	</div>);
 }
 
