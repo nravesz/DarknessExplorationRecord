@@ -2,7 +2,7 @@
   width: 150px;
   text-align: center;
   padding: 6px 0;
-  background: #ff3131;
+  background: var(--color-brand);
   color: black;
   border: none;
   font-size: 14px;
@@ -28,7 +28,7 @@
 }
 
 .slanted-btn.active {
-  background: #ff3131;
+  background: var(--color-brand);
   color: #fff;
   z-index: 2;
 }
