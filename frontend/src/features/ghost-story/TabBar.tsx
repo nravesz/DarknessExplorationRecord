@@ -1,12 +1,26 @@
+import { NavLink } from 'react-router-dom';
+import { ROUTES } from '../../routes';
 import './TabBar.css';
+
+const TABS = [
+  { label: 'Overview', to: ROUTES.GHOST_STORY_TABS.OVERVIEW },
+  { label: 'Description', to: ROUTES.GHOST_STORY_TABS.DESCRIPTION },
+  { label: 'Manual', to: ROUTES.GHOST_STORY_TABS.MANUAL },
+  { label: 'Records', to: ROUTES.GHOST_STORY_TABS.RECORDS },
+];
 
 function TabBar() {
   return (
     <div className='flex justify-center'>
-      <button className="slanted-btn">Overview</button>
-      <button className="slanted-btn">Description</button>
-      <button className="slanted-btn">Manual</button>
-      <button className="slanted-btn">Records</button>
+      {TABS.map(({ label, to }) => (
+        <NavLink
+          key={to}
+          to={to}
+          className={({ isActive }) => `slanted-btn ${isActive ? 'active' : ''}`}
+        >
+          {label}
+        </NavLink>
+      ))}
     </div>
   );
 }

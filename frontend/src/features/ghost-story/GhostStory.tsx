@@ -1,4 +1,4 @@
-import FileSummary from "./FileSummary";
+import { Outlet } from "react-router-dom";
 import TabBar from "./TabBar";
 
 function GhostStory() {
@@ -9,13 +9,13 @@ function GhostStory() {
 			<h1 className="text-4xl font-bold">Qterw-D-43</h1>
 		</div>
 
-		<div>Overview Description Manual Records</div>
-
 		<div className="divider"></div>
 
 		<TabBar />
 
-		<FileSummary />
+		<div className="mt-6">
+			<Outlet />
+		</div>
 
 	</div>);
 }
