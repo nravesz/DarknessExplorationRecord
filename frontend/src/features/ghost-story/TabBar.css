@@ -1,0 +1,37 @@
+.slanted-btn {
+  padding: 6px 40px;
+  background: #ff3131;
+  color: black;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  margin-right: -14px;
+
+  clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.slanted-btn:last-child {
+  margin-right: 0;
+}
+
+.slanted-btn:hover {
+  background: #3a3a3a;
+  color: #ccc;
+  z-index: 1;
+}
+
+.slanted-btn.active {
+  background: #ff3131;
+  color: #fff;
+  z-index: 2;
+}
+
+.slanted-btn.active:hover {
+  background: #ff4f4f;
+  color: #fff;
+}

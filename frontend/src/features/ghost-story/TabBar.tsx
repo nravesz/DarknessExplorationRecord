@@ -1,4 +1,4 @@
-import './style.css';
+import './TabBar.css';
 
 function TabBar() {
   return (
