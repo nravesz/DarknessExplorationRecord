@@ -11,7 +11,7 @@ const TABS = [
 
 function TabBar() {
   return (
-    <div className='flex justify-center'>
+    <div className='flex'>
       {TABS.map(({ label, to }) => (
         <NavLink
           key={to}
