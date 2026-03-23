@@ -1,5 +1,7 @@
 .slanted-btn {
-  padding: 6px 40px;
+  width: 150px;
+  text-align: center;
+  padding: 6px 0;
   background: #ff3131;
   color: black;
   border: none;
