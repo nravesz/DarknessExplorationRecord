@@ -19,6 +19,7 @@ function App() {
           <Route path={MANUAL} element={<div>Procedure Manual</div>} />
           <Route path={RECORDS} element={<div>Darkness Exploration Records</div>} />
         </Route>
+        <Route path={ROUTES.GHOST_STORIES} element={<div>Ghost Stories</div>} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       </Route>
     </Routes>
