@@ -21,12 +21,12 @@ function GhostStoryList() {
       <div className="flex flex-col gap-2">
         {paginated.map((story: IGhostStory) => (
           <div
-            key={story._id}
+            key={story.id}
             className="flex items-center justify-between p-4 bg-base-200 rounded-lg hover:bg-base-300 cursor-pointer transition"
           >
             <div>
               <p className="font-medium">{story.name}</p>
-              <p className="text-sm text-base-content/60">{story._id}</p>
+              <p className="text-sm text-base-content/60">{story.id}</p>
             </div>
             <span className="badge badge-outline">Class {story.class}</span>
           </div>

@@ -1,5 +1,5 @@
 export interface IGhostStory {
-  _id: string;
+  id: string;
   class: string;
   name: string;
 }
