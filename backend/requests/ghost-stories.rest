@@ -3,3 +3,13 @@ GET http://localhost:3000/ghost-stories
 Accept: application/json
 
 ###
+
+# Create a ghost story
+POST http://localhost:3000/ghost-stories
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Black Cat",
+    "class": "A"
+}

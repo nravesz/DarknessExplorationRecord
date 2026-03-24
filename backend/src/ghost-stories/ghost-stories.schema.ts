@@ -3,6 +3,9 @@ import { GhostClass } from './enums/ghost-stories.enum';
 
 @Schema()
 export class GhostStory {
+	@Prop({ required: true })
+	storyId: number;
+
 	@Prop({ require: true })
 	name: string;
 
@@ -14,3 +17,5 @@ export class GhostStory {
 }
 
 export const GhostStorySchema = SchemaFactory.createForClass(GhostStory);
+
+GhostStorySchema.index({ class: 1, storyId: 1 }, { unique: true });

@@ -33,7 +33,16 @@ export class GhostStoriesRepository {
 		session.startTransaction();
 
 		try {
-			const doc = new this.ghostStoryModel(dto);
+			const count = await this.ghostStoryModel
+				.countDocuments({ class: dto.class })
+				.session(session);
+
+			let storyId = count + 1;
+			while (await this.ghostStoryModel.exists({ class: dto.class, storyId }).session(session)) {
+				storyId++;
+			}
+
+			const doc = new this.ghostStoryModel({ ...dto, storyId });
 			const saved = await doc.save({ session });
 
 			await session.commitTransaction();
