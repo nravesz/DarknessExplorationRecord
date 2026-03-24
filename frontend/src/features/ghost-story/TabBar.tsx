@@ -4,8 +4,7 @@ import './TabBar.css';
 
 const TABS = [
   { label: 'Overview', to: ROUTES.GHOST_STORY_TABS.OVERVIEW },
-  { label: 'Description', to: ROUTES.GHOST_STORY_TABS.DESCRIPTION },
-  { label: 'Manual', to: ROUTES.GHOST_STORY_TABS.MANUAL },
+{ label: 'Manual', to: ROUTES.GHOST_STORY_TABS.MANUAL },
   { label: 'Records', to: ROUTES.GHOST_STORY_TABS.RECORDS },
 ];
 
