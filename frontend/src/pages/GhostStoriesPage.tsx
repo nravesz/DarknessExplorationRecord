@@ -1,4 +1,4 @@
-import GhostStoryList from '../features/ghost-story/GhostStoryList';
+import GhostStoryList from '../features/ghost-stories/GhostStoryList';
 
 function GhostStoriesPage() {
   return <GhostStoryList />;
