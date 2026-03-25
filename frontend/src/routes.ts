@@ -2,6 +2,7 @@ export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
   GHOST_STORIES: "/ghost-stories",
+  GHOST_STORY: "/ghost-stories/:id",
   USER: "/user",
   SETTINGS: "/settings",
   GHOST_STORY_TABS: {
@@ -11,3 +12,5 @@ export const ROUTES = {
     RECORDS: "records",
   },
 };
+
+export const ghostStoryPath = (id: string) => `/ghost-stories/${id}`;

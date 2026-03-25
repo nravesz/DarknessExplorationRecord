@@ -1,14 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import TabBar from "./TabBar";
 
 function GhostStory() {
+  const { id } = useParams();
+
   return (
 	<div>
 		<div className="border-l-4 border-brand pl-4 mb-8">
 			<div className="text-xs uppercase tracking-widest text-brand mb-1">Ghost Story</div>
 			<div className="flex items-baseline justify-between">
 				<h1 className="text-4xl font-bold">Tuesday Quiz Show</h1>
-				<span className="font-mono text-sm text-base-content/40">Qterw-D-43</span>
+				<span className="font-mono text-sm text-base-content/40">{id}</span>
 			</div>
 		</div>
 
