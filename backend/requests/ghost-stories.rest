@@ -11,5 +11,8 @@ Accept: application/json
 
 {
     "name": "Black Cat",
-    "class": "A"
+    "class": "A",
+    "summary": "A ghost story about a strange entity in the shape of a black cat that can manipulate intelligent beings' mind and action.",
+    "mediumToEnter": "Found in the Mermaid Tomb.",
+    "description": "The said enitity was, in fact, Kim Soleum who transformed into cat with Street Stamps, used the Necronomicon (Easy Korean Revised Edition) to show illusion of a great being, then spoke to the employees in human language with a Tattoo Sticker with musical note design."
 }

@@ -14,6 +14,15 @@ export class GhostStory {
 		enum: GhostClass,
 	})
 	class: GhostClass;
+
+	@Prop()
+	summary: string;
+
+	@Prop()
+	mediumToEnter: string;
+
+	@Prop()
+	description: string;
 }
 
 export const GhostStorySchema = SchemaFactory.createForClass(GhostStory);

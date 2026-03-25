@@ -11,6 +11,9 @@ export class GhostStoriesService {
 			id: `Qterw-${doc.class}-${doc.storyId}`,
 			name: doc.name,
 			class: doc.class,
+			summary: doc.summary,
+			mediumToEnter: doc.mediumToEnter,
+			description: doc.description,
 		};
 	}
 
