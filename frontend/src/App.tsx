@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './features/Layout';
 import Description from './features/ghost-story/Description';
 import Overview from './features/ghost-story/Overview';
+import GhostStoriesPage from './pages/GhostStoriesPage';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import { ROUTES } from './routes';
@@ -19,6 +20,7 @@ function App() {
           <Route path={MANUAL} element={<div>Procedure Manual</div>} />
           <Route path={RECORDS} element={<div>Darkness Exploration Records</div>} />
         </Route>
+        <Route path={ROUTES.GHOST_STORIES} element={<GhostStoriesPage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       </Route>
     </Routes>
