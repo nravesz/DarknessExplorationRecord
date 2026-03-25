@@ -25,7 +25,7 @@ function GhostStory() {
 		<TabBar />
 
 		<div className="mt-10">
-			<Outlet />
+			<Outlet context={story} />
 		</div>
 	</div>
   );
