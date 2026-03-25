@@ -22,6 +22,11 @@ export class GhostStoriesService {
 		return docs.map((doc) => this.toResponse(doc));
 	}
 
+	async getOne(ghostClass: string, storyId: number) {
+		const doc = await this.repository.getOne(ghostClass, storyId);
+		return this.toResponse(doc);
+	}
+
 	async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO) {
 		const doc = await this.repository.createGhostStory(createGhostStoryDTO);
 		return this.toResponse(doc);

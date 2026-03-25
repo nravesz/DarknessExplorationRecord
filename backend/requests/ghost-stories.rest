@@ -4,6 +4,12 @@ Accept: application/json
 
 ###
 
+# Get one ghost story
+GET http://localhost:3000/ghost-stories/A/1
+Accept: application/json
+
+###
+
 # Create a ghost story
 POST http://localhost:3000/ghost-stories
 Content-Type: application/json
