@@ -4,6 +4,34 @@ import type { IGhostStory } from '../../interfaces/IGhostStory';
 
 const PAGE_SIZE = 10;
 
+function GhostStoryItem({ story }: { story: IGhostStory }) {
+  return (
+    <div className="flex items-center justify-between p-4 bg-base-200 rounded-lg hover:bg-base-300 cursor-pointer transition">
+      <div>
+        <p className="font-medium">{story.name}</p>
+        <p className="text-sm text-base-content/60">{story.id}</p>
+      </div>
+      <span className="badge badge-outline">Class {story.class}</span>
+    </div>
+  );
+}
+
+function Pagination({ page, totalPages, onPrev, onNext }: {
+  page: number;
+  totalPages: number;
+  onPrev: () => void;
+  onNext: () => void;
+}) {
+  if (totalPages <= 1) return null;
+  return (
+    <div className="flex items-center justify-center gap-4 mt-2">
+      <button className="btn btn-sm" onClick={onPrev} disabled={page === 0}>Previous</button>
+      <span className="text-sm text-base-content/60">{page + 1} / {totalPages}</span>
+      <button className="btn btn-sm" onClick={onNext} disabled={page === totalPages - 1}>Next</button>
+    </div>
+  );
+}
+
 function GhostStoryList() {
   const { stories, loading, error } = useGhostStories();
   const [page, setPage] = useState(0);
@@ -17,43 +45,17 @@ function GhostStoryList() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-semibold">Ghost Stories</h1>
-
       <div className="flex flex-col gap-2">
         {paginated.map((story: IGhostStory) => (
-          <div
-            key={story.id}
-            className="flex items-center justify-between p-4 bg-base-200 rounded-lg hover:bg-base-300 cursor-pointer transition"
-          >
-            <div>
-              <p className="font-medium">{story.name}</p>
-              <p className="text-sm text-base-content/60">{story.id}</p>
-            </div>
-            <span className="badge badge-outline">Class {story.class}</span>
-          </div>
+          <GhostStoryItem key={story.id} story={story} />
         ))}
       </div>
-
-      {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-4 mt-2">
-          <button
-            className="btn btn-sm"
-            onClick={() => setPage((p) => p - 1)}
-            disabled={page === 0}
-          >
-            Previous
-          </button>
-          <span className="text-sm text-base-content/60">
-            {page + 1} / {totalPages}
-          </span>
-          <button
-            className="btn btn-sm"
-            onClick={() => setPage((p) => p + 1)}
-            disabled={page === totalPages - 1}
-          >
-            Next
-          </button>
-        </div>
-      )}
+      <Pagination
+        page={page}
+        totalPages={totalPages}
+        onPrev={() => setPage((p) => p - 1)}
+        onNext={() => setPage((p) => p + 1)}
+      />
     </div>
   );
 }
