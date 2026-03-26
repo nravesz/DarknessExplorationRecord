@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { GhostStoriesService } from './ghost-stories.service';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 
@@ -10,6 +10,14 @@ export class GhostStoriesController {
 	async getAll() {
 		const ghostStory = await this.ghostStoriesService.getAll();
 		return ghostStory;
+	}
+
+	@Get(':class/:storyId')
+	async getOne(
+		@Param('class') ghostClass: string,
+		@Param('storyId') storyId: number
+	) {
+		return this.ghostStoriesService.getOne(ghostClass, storyId);
 	}
 
 	@Post()

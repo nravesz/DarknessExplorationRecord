@@ -28,6 +28,10 @@ export class GhostStoriesRepository {
 		}
 	}
 
+	async getOne(ghostClass: string, storyId: number) {
+		return this.ghostStoryModel.findOne({ class: ghostClass, storyId });
+	}
+
 	async createGhostStory(dto: CreateGhostStoryDTO) {
 		const session = await this.ghostStoryModel.db.startSession();
 		session.startTransaction();

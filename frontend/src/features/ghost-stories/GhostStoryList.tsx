@@ -1,12 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGhostStories } from '../../hooks/useGhostStory';
 import type { IGhostStory } from '../../interfaces/IGhostStory';
+import { ghostStoryPath } from '../../routes';
 
 const PAGE_SIZE = 10;
 
-function GhostStoryItem({ story }: { story: IGhostStory }) {
+function GhostStoryItem({ story, onClick }: { story: IGhostStory; onClick: () => void }) {
   return (
-    <div className="flex items-center justify-between p-4 bg-base-200 rounded-lg hover:bg-base-300 cursor-pointer transition">
+    <div
+      className="flex items-center justify-between p-4 bg-base-200 rounded-lg hover:bg-base-300 cursor-pointer transition"
+      onClick={onClick}
+    >
       <div>
         <p className="font-medium">{story.name}</p>
         <p className="text-sm text-base-content/60">{story.id}</p>
@@ -35,6 +40,7 @@ function Pagination({ page, totalPages, onPrev, onNext }: {
 function GhostStoryList() {
   const { stories, loading, error } = useGhostStories();
   const [page, setPage] = useState(0);
+  const navigate = useNavigate();
 
   if (loading) return <p className="text-base-content/60">Loading...</p>;
   if (error) return <p className="text-error">Error: {error}</p>;
@@ -47,7 +53,7 @@ function GhostStoryList() {
       <h1 className="text-2xl font-semibold">Ghost Stories</h1>
       <div className="flex flex-col gap-2">
         {paginated.map((story: IGhostStory) => (
-          <GhostStoryItem key={story.id} story={story} />
+          <GhostStoryItem key={story.id} story={story} onClick={() => navigate(ghostStoryPath(story.id))} />
         ))}
       </div>
       <Pagination

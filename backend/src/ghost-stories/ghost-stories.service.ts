@@ -11,12 +11,20 @@ export class GhostStoriesService {
 			id: `Qterw-${doc.class}-${doc.storyId}`,
 			name: doc.name,
 			class: doc.class,
+			summary: doc.summary,
+			mediumToEnter: doc.mediumToEnter,
+			description: doc.description,
 		};
 	}
 
 	async getAll() {
 		const docs = await this.repository.getAll();
 		return docs.map((doc) => this.toResponse(doc));
+	}
+
+	async getOne(ghostClass: string, storyId: number) {
+		const doc = await this.repository.getOne(ghostClass, storyId);
+		return this.toResponse(doc);
 	}
 
 	async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getGhostStories } from '../api/ghostStory.service';
+import { getGhostStories, getGhostStory } from '../api/ghostStory.service';
 import type { IGhostStory } from '../interfaces/IGhostStory';
 
 export function useGhostStories() {
@@ -15,4 +15,19 @@ export function useGhostStories() {
   }, []);
 
   return { stories, loading, error };
+}
+
+export function useGhostStory(ghostClass: string, id: string) {
+  const [story, setStory] = useState<IGhostStory | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  console.log(ghostClass, id);
+  useEffect(() => {
+    getGhostStory(ghostClass, id)
+      .then(setStory)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, [ghostClass, id]);
+
+  return { story, loading, error };
 }
