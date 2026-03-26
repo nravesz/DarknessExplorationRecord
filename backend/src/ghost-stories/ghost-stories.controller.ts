@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { GhostStoriesService } from './ghost-stories.service';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('ghost-stories')
 export class GhostStoriesController {
@@ -21,6 +22,7 @@ export class GhostStoriesController {
 	}
 
 	@Post()
+	@UseGuards(JwtAuthGuard)
 	async createGhostStory(
 		@Body()
 		createGhostStoryDTO: CreateGhostStoryDTO
