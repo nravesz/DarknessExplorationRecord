@@ -1,8 +1,4 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { createGhostStory, type ICreateGhostStoryPayload } from '../../api/ghostStory.service';
-import { ghostStoryPath } from '../../routes';
+import { useCreateGhostStory } from './useCreateGhostStory';
 
 const GHOST_CLASSES = ['A', 'B', 'C', 'D', 'Twilight'];
 
@@ -22,27 +18,7 @@ function LabeledField({ label, children, bordered = true }: LabeledFieldProps) {
 }
 
 function GhostStoryForm() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState<ICreateGhostStoryPayload>({
-    name: '',
-    class: '',
-    summary: '',
-    mediumToEnter: '',
-    description: '',
-  });
-
-  const { mutate, isPending, error } = useMutation({
-    mutationFn: createGhostStory,
-    onSuccess: (story) => {
-      navigate(ghostStoryPath(story.id));
-    },
-  });
-
-  function handleChange(field: keyof ICreateGhostStoryPayload, value: string) {
-    setForm((prev) => ({ ...prev, [field]: value }));
-  }
-
-  const canSubmit = form.name.trim() !== '' && form.class !== '';
+  const { form, handleChange, submit, isPending, error, canSubmit } = useCreateGhostStory();
 
   return (
     <div>
@@ -67,9 +43,7 @@ function GhostStoryForm() {
           onChange={(e) => handleChange('class', e.target.value)}
         >
           <option value="" disabled>Select class</option>
-          {GHOST_CLASSES.map((c) => (
-            <option key={c} value={c}>{c}</option>
-          ))}
+          {GHOST_CLASSES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
       </div>
 
@@ -105,15 +79,9 @@ function GhostStoryForm() {
         </LabeledField>
       </div>
 
-      {error && (
-        <p className="text-error text-sm mb-4">Failed to create ghost story. Please try again.</p>
-      )}
+      {error && <p className="text-error text-sm mb-4">Failed to create ghost story. Please try again.</p>}
 
-      <button
-        className="btn btn-primary"
-        onClick={() => mutate(form)}
-        disabled={!canSubmit || isPending}
-      >
+      <button className="btn btn-primary" onClick={submit} disabled={!canSubmit || isPending}>
         {isPending ? 'Creating...' : 'Create Ghost Story'}
       </button>
     </div>
