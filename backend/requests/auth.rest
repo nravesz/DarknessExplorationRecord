@@ -9,3 +9,8 @@ Accept: application/json
 }
 
 ###
+
+# Logout
+POST http://localhost:3000/auth/logout
+
+###

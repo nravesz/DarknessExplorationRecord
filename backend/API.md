@@ -87,6 +87,15 @@ The `refreshToken` is set automatically as an `HttpOnly` cookie (`Max-Age: 7 day
 
 ---
 
+### POST /auth/logout
+Log out and clear the refresh token cookie.
+
+**Response** `200 OK`
+
+No body. The `refreshToken` cookie is cleared.
+
+---
+
 ## Ghost Stories
 
 ### GET /ghost-stories

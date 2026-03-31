@@ -1,11 +1,13 @@
-import { Home, User, Settings, LogIn, Ghost } from 'lucide-react';
+import { Home, User, Settings, LogIn, LogOut, Ghost } from 'lucide-react';
 import { ROUTES } from '../../../routes';
 import { useAuth } from '../../../hooks/useAuth';
+import { useLogout } from '../../auth/logout/hooks/useLogout';
 import SideBarButton from './SideBarButton';
 import Logo from '../Logo';
 
 function SideBar() {
-  const { codename } = useAuth();
+  const { isLoggedIn, codename } = useAuth();
+  const { mutate: logout } = useLogout();
 
   return (
     <div className="flex flex-col bg-base-200 h-screen w-50 space-y-2 items-center py-4 shadow-lg">
@@ -22,7 +24,17 @@ function SideBar() {
       <SideBarButton name={"Ghost Stories"} icon={Ghost} route={ROUTES.GHOST_STORIES} />
       {/* <SideBarButton name={"User"} icon={User} route={ROUTES.USER} />
       <SideBarButton name={"Settings"} icon={Settings} route={ROUTES.SETTINGS} /> */}
-      <SideBarButton name={"LogIn"} icon={LogIn} route={ROUTES.LOGIN} />
+      {isLoggedIn ? (
+        <button
+          onClick={() => logout()}
+          className="w-4/5 pl-4 p-2 rounded transition flex items-center space-x-2 hover:bg-base-300"
+        >
+          <LogOut size={24} />
+          <span>Logout</span>
+        </button>
+      ) : (
+        <SideBarButton name={"Login"} icon={LogIn} route={ROUTES.LOGIN} />
+      )}
     </div>
   );
 }
