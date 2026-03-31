@@ -7,6 +7,7 @@ import CreateGhostStoryPage from './pages/CreateGhostStoryPage';
 import GhostStoriesPage from './pages/GhostStoriesPage';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
 import { ROUTES } from './routes';
 
 const { OVERVIEW, DESCRIPTION, MANUAL, RECORDS } = ROUTES.GHOST_STORY_TABS;
@@ -26,6 +27,7 @@ function App() {
           <Route path={RECORDS} element={<div>Darkness Exploration Records</div>} />
         </Route>
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       </Route>
     </Routes>
   );
