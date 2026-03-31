@@ -10,10 +10,11 @@ Accept: application/json
 
 ###
 
-# Create a ghost story
+# Create a ghost story (requires authentication)
 POST http://localhost:3000/ghost-stories
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTgyNDU1N2Q3YjEyYjE4NTc4Mjc3MDYiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc0NTUzNjAzLCJleHAiOjE3NzQ1NTQ1MDN9.Swr4I9n6gbTte0C1j23aFtreohTznlS9kl1fJi0_F1k
 
 {
     "name": "Black Cat",
@@ -22,3 +23,4 @@ Accept: application/json
     "mediumToEnter": "Found in the Mermaid Tomb.",
     "description": "The said enitity was, in fact, Kim Soleum who transformed into cat with Street Stamps, used the Necronomicon (Easy Korean Revised Edition) to show illusion of a great being, then spoke to the employees in human language with a Tattoo Sticker with musical note design."
 }
+
