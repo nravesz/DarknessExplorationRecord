@@ -1,5 +1,5 @@
+import { useAuthContext } from '../context/hooks/useAuthContext';
+
 export function useAuth() {
-  const isLoggedIn = !!localStorage.getItem('accessToken');
-  const codename = localStorage.getItem('codename');
-  return { isLoggedIn, codename };
+  return useAuthContext();
 }
