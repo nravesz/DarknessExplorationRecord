@@ -8,7 +8,7 @@ export class UserController {
     constructor(private userService: UserService) {}
 
     @Post()
-    async createGhostStory(
+    async createUser(
         @Body()
         createUserDTO: CreateUserDTO
     ) {
