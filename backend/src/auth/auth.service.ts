@@ -33,13 +33,15 @@ export class AuthService {
 		const doc: LoginResponseDTO = {
 			accessToken,
 			refreshToken,
+			email: user.email,
+			codename: user.codename,
 		};
 		return doc;
 	}
 
 	async validateUser(
 		createUserDTO: LoginDTO
-	): Promise<{ id: string; email: string } | null> {
+	): Promise<{ id: string; email: string; codename: string } | null> {
 		const user = await this.usersService.findByEmail(createUserDTO.email);
 		if (!user) return null;
 

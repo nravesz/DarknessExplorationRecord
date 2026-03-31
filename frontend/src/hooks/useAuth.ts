@@ -1,4 +1,5 @@
 export function useAuth() {
   const isLoggedIn = !!localStorage.getItem('accessToken');
-  return { isLoggedIn };
+  const codename = localStorage.getItem('codename');
+  return { isLoggedIn, codename };
 }

@@ -6,6 +6,7 @@ export function useLogin() {
     mutationFn: postLogin,
     onSuccess: (data) => {
       localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('codename', data.codename);
     },
   });
 }

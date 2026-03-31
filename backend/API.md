@@ -72,7 +72,9 @@ Log in and receive tokens.
 **Response** `201 Created`
 ```json
 {
-  "accessToken": "<jwt_access_token>"
+  "accessToken": "<jwt_access_token>",
+  "email": "user@example.com",
+  "codename": "carpincho"
 }
 ```
 
