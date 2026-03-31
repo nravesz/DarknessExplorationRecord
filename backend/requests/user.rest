@@ -5,7 +5,9 @@ Accept: application/json
 
 {
     "email": "agente.carpincho@gmail.com",
-    "password": "123456"
+    "password": "123456",
+    "name": "Agente Carpincho",
+    "codename": "carpincho"
 }
 
 ###
@@ -16,7 +18,9 @@ Accept: application/json
 
 {
     "email": "agente.yaguarete@gmail.com",
-    "password": "123456"
+    "password": "123456",
+    "name": "Agente Yaguarete",
+    "codename": "yaguarete"
 }
 
 ###

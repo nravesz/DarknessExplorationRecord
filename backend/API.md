@@ -22,23 +22,29 @@ Access tokens expire after **15 minutes**. Obtain one via [POST /auth/login](#po
 Register a new user.
 
 **Request body**
-| Field | Type | Required |
-|-------|------|----------|
-| email | string | yes |
-| password | string | yes |
+| Field | Type | Required | Notes |
+|-------|------|----------|-------|
+| email | string | yes | |
+| password | string | yes | |
+| name | string | yes | |
+| codename | string | yes | Must be unique |
 
 **Example**
 ```json
 {
   "email": "user@example.com",
-  "password": "securepassword"
+  "password": "securepassword",
+  "name": "Agent Carpincho",
+  "codename": "carpincho"
 }
 ```
 
 **Response** `201 Created`
 ```json
 {
-  "email": "user@example.com"
+  "email": "user@example.com",
+  "name": "Agent Carpincho",
+  "codename": "carpincho"
 }
 ```
 
