@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useRegister } from './register.hooks';
-import type { IRegisterPayload } from './interfaces/register-payload.interface';
-import { ROUTES } from '../../routes';
+import { useRegister } from './hooks/useRegister';
+import type { IRegisterPayload } from './interfaces/IRegisterPayload';
+import { ROUTES } from '../../../routes';
 
 function Register() {
   const [form, setForm] = useState<IRegisterPayload>({
