@@ -1,6 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   LOGIN: "/login",
+  REGISTER: "/register",
   GHOST_STORIES: "/ghost-stories",
   CREATE_GHOST_STORY: "/ghost-stories/new",
   GHOST_STORY: "/ghost-stories/:id",

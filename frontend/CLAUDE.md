@@ -21,6 +21,9 @@
 - Prefer a clean, modern aesthetic
 - Default to a minimalist design unless specified otherwise.
 
+## Folders
+- Hooks should go to a folder named hooks, interfaces should go to a folder named interfaces. This two folders should be inside the feature folder using them unless they are being used in multiple features.
+
 ## Responsiveness
 - Ensure layouts work on:
     - Mobile

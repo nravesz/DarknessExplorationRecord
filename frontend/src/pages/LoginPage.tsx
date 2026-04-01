@@ -1,4 +1,4 @@
-import Login from "../features/auth/Login";
+import Login from "../features/auth/login/Login";
 
 function LoginPage() {
   return (
