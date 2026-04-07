@@ -14,6 +14,7 @@ export class GhostStoriesService {
 			summary: doc.summary,
 			mediumToEnter: doc.mediumToEnter,
 			description: doc.description,
+			createdBy: doc.createdBy,
 		};
 	}
 
@@ -27,8 +28,8 @@ export class GhostStoriesService {
 		return this.toResponse(doc);
 	}
 
-	async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO) {
-		const doc = await this.repository.createGhostStory(createGhostStoryDTO);
+	async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO, userId: string) {
+		const doc = await this.repository.createGhostStory(createGhostStoryDTO, userId);
 		return this.toResponse(doc);
 	}
 }

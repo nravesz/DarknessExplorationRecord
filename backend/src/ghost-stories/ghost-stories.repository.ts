@@ -32,7 +32,7 @@ export class GhostStoriesRepository {
 		return this.ghostStoryModel.findOne({ class: ghostClass, storyId });
 	}
 
-	async createGhostStory(dto: CreateGhostStoryDTO) {
+	async createGhostStory(dto: CreateGhostStoryDTO, userId: string) {
 		const session = await this.ghostStoryModel.db.startSession();
 		session.startTransaction();
 
@@ -46,7 +46,7 @@ export class GhostStoriesRepository {
 				storyId++;
 			}
 
-			const doc = new this.ghostStoryModel({ ...dto, storyId });
+			const doc = new this.ghostStoryModel({ ...dto, storyId, createdBy: userId });
 			const saved = await doc.save({ session });
 
 			await session.commitTransaction();
