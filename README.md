@@ -18,18 +18,18 @@
 ## Core features
 - [ ] Auth
     - [x] Login
-    - [ ] Sign in
-    - [ ] Log out
+    - [x] Sign in
+    - [x] Log out
 - [ ] Home page
 - [ ] User
     - Mostrar nombre de usuario en algún lado
     - Perfil
         - [ ] Mostrar Ghost Stories
 - [ ] Ghost Stories:
-    - [ ] Lista
-    - [ ] Crear
+    - [x] Lista
+    - [x] Crear
     - [ ] Mostrar
-        - [ ] Overview
+        - [x] Overview
         - [ ] Manual
             - [ ] Descargar manual
             - [ ] Mirar manual online
