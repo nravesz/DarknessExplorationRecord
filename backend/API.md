@@ -111,7 +111,7 @@ Get all ghost stories.
     "summary": "...",
     "mediumToEnter": "...",
     "description": "...",
-    "author": "<userId>"
+    "author": "<codename>"
   }
 ]
 ```
@@ -141,7 +141,7 @@ GET /ghost-stories/A/1
   "summary": "...",
   "mediumToEnter": "...",
   "description": "...",
-  "author": "<userId>"
+  "author": "<codename>"
 }
 ```
 
@@ -184,7 +184,7 @@ Authorization: Bearer <accessToken>
   "summary": "A ghost story about a strange entity in the shape of a black cat.",
   "mediumToEnter": "Found in the Mermaid Tomb.",
   "description": "...",
-  "author": "<userId>"
+  "author": "<codename>"
 }
 ```
 
