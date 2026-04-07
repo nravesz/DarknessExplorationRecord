@@ -14,7 +14,7 @@ export class GhostStoriesService {
 			summary: doc.summary,
 			mediumToEnter: doc.mediumToEnter,
 			description: doc.description,
-			createdBy: doc.createdBy,
+			author: doc.author,
 		};
 	}
 

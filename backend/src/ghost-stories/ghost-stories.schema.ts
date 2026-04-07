@@ -26,7 +26,7 @@ export class GhostStory {
 	description: string;
 
 	@Prop({ type: Types.ObjectId, ref: 'User', required: true })
-	createdBy: Types.ObjectId;
+	author: Types.ObjectId;
 }
 
 export const GhostStorySchema = SchemaFactory.createForClass(GhostStory);
