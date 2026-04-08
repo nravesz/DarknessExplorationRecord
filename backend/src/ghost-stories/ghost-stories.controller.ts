@@ -13,6 +13,12 @@ export class GhostStoriesController {
 		return ghostStory;
 	}
 
+	@Get('my')
+	@UseGuards(JwtAuthGuard)
+	async getMyStories(@Request() req: any) {
+		return this.ghostStoriesService.getMyStories(req.user.sub);
+	}
+
 	@Get(':class/:storyId')
 	async getOne(
 		@Param('class') ghostClass: string,
