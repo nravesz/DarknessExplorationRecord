@@ -21,6 +21,15 @@ function FileSummary({ story }: { story: IGhostStory }) {
           </span>
         </div>
 
+        {story.author && (
+          <>
+            <div className="border-t border-base-content/10"></div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm text-base-content/60 uppercase tracking-wide">Registered by</span>
+              <span className="text-sm font-semibold capitalize">{`Agent ${story.author}`}</span>
+            </div>
+          </>
+        )}
 
       </div>
     </div>

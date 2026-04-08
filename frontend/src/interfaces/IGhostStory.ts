@@ -6,4 +6,5 @@ export interface IGhostStory {
   mediumToEnter?: string;
   description?: string;
   manual?: string;
+  author?: string;
 }

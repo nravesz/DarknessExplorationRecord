@@ -14,7 +14,7 @@ Accept: application/json
 POST http://localhost:3000/ghost-stories
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OTgyNDU1N2Q3YjEyYjE4NTc4Mjc3MDYiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc0NTUzNjAzLCJleHAiOjE3NzQ1NTQ1MDN9.Swr4I9n6gbTte0C1j23aFtreohTznlS9kl1fJi0_F1k
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkMmE5MGEzNGMyZjAwMDJjZGIiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc1NTkwNDI3LCJleHAiOjE3NzYxOTUyMjd9.I6EiCvD1v8r09I7KflTNqInroQqkzYYl-vtDa8hMqcE
 
 {
     "name": "Black Cat",

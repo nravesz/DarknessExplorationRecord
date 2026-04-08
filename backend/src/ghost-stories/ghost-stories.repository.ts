@@ -16,7 +16,7 @@ export class GhostStoriesRepository {
 		session.startTransaction();
 
 		try {
-			const doc = await this.ghostStoryModel.find().session(session);
+			const doc = await this.ghostStoryModel.find().populate('author', 'codename').session(session);
 
 			await session.commitTransaction();
 			session.endSession();
@@ -29,10 +29,10 @@ export class GhostStoriesRepository {
 	}
 
 	async getOne(ghostClass: string, storyId: number) {
-		return this.ghostStoryModel.findOne({ class: ghostClass, storyId });
+		return this.ghostStoryModel.findOne({ class: ghostClass, storyId }).populate('author', 'codename');
 	}
 
-	async createGhostStory(dto: CreateGhostStoryDTO) {
+	async createGhostStory(dto: CreateGhostStoryDTO, userId: string) {
 		const session = await this.ghostStoryModel.db.startSession();
 		session.startTransaction();
 
@@ -46,12 +46,12 @@ export class GhostStoriesRepository {
 				storyId++;
 			}
 
-			const doc = new this.ghostStoryModel({ ...dto, storyId });
+			const doc = new this.ghostStoryModel({ ...dto, storyId, author: userId });
 			const saved = await doc.save({ session });
 
 			await session.commitTransaction();
 			session.endSession();
-			return saved;
+			return saved.populate('author', 'codename');
 		} catch (err) {
 			await session.abortTransaction();
 			session.endSession();
