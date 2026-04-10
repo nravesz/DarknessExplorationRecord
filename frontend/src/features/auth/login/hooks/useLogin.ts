@@ -13,7 +13,8 @@ export function useLogin() {
     onSuccess: (data) => {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('codename', data.codename);
-      setAuth(data.codename);
+      localStorage.setItem('email', data.email);
+      setAuth(data.codename, data.email);
       navigate(ROUTES.HOME);
     },
   });

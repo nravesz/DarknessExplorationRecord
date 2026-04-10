@@ -4,39 +4,10 @@ import { useAuth } from '../../hooks/useAuth';
 import { useGhostStories } from '../../hooks/useGhostStory';
 import type { IGhostStory } from '../../interfaces/IGhostStory';
 import { ghostStoryPath, ROUTES } from '../../routes';
+import GhostStoryItem from './GhostStoryItem';
+import Pagination from './Pagination';
 
 const PAGE_SIZE = 10;
-
-function GhostStoryItem({ story, onClick }: { story: IGhostStory; onClick: () => void }) {
-  return (
-    <div
-      className="flex items-center justify-between p-4 bg-base-200 rounded-lg hover:bg-base-300 cursor-pointer transition"
-      onClick={onClick}
-    >
-      <div>
-        <p className="font-medium">{story.name}</p>
-        <p className="text-sm text-base-content/60">{story.id}</p>
-      </div>
-      <span className="badge badge-outline">Class {story.class}</span>
-    </div>
-  );
-}
-
-function Pagination({ page, totalPages, onPrev, onNext }: {
-  page: number;
-  totalPages: number;
-  onPrev: () => void;
-  onNext: () => void;
-}) {
-  if (totalPages <= 1) return null;
-  return (
-    <div className="flex items-center justify-center gap-4 mt-2">
-      <button className="btn btn-sm" onClick={onPrev} disabled={page === 0}>Previous</button>
-      <span className="text-sm text-base-content/60">{page + 1} / {totalPages}</span>
-      <button className="btn btn-sm" onClick={onNext} disabled={page === totalPages - 1}>Next</button>
-    </div>
-  );
-}
 
 function GhostStoryList() {
   const { stories, loading, error } = useGhostStories();

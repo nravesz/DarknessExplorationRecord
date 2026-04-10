@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getGhostStories, getGhostStory } from '../api/ghostStory.service';
+import { getGhostStories, getGhostStory, getMyGhostStories } from '../api/ghostStory.service';
 import type { IGhostStory } from '../interfaces/IGhostStory';
 
 export function useGhostStories() {
@@ -9,6 +9,21 @@ export function useGhostStories() {
 
   useEffect(() => {
     getGhostStories()
+      .then(setStories)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return { stories, loading, error };
+}
+
+export function useMyGhostStories() {
+  const [stories, setStories] = useState<IGhostStory[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    getMyGhostStories()
       .then(setStories)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));

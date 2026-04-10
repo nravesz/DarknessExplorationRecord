@@ -19,6 +19,14 @@ export const getGhostStory = async (ghostClass: string, id: string): Promise<IGh
   return response.data;
 };
 
+export const getMyGhostStories = async (): Promise<IGhostStory[]> => {
+  const token = localStorage.getItem('accessToken');
+  const response = await api.get<IGhostStory[]>('/ghost-stories/my', {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
 export const createGhostStory = async (payload: ICreateGhostStoryPayload): Promise<IGhostStory> => {
   const token = localStorage.getItem('accessToken');
   const response = await api.post<IGhostStory>('/ghost-stories', payload, {
