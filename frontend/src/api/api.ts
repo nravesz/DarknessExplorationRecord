@@ -6,3 +6,16 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('codename');
+      localStorage.removeItem('email');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);

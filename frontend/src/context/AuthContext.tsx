@@ -8,14 +8,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [auth, setAuthState] = useState<IAuthState>({
     isLoggedIn: !!localStorage.getItem('accessToken'),
     codename: localStorage.getItem('codename'),
+    email: localStorage.getItem('email'),
   });
 
-  const setAuth = (codename: string) => {
-    setAuthState({ isLoggedIn: true, codename });
+  const setAuth = (codename: string, email: string) => {
+    setAuthState({ isLoggedIn: true, codename, email });
   };
 
   const clearAuth = () => {
-    setAuthState({ isLoggedIn: false, codename: null });
+    setAuthState({ isLoggedIn: false, codename: null, email: null });
   };
 
   return (

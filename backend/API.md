@@ -147,6 +147,36 @@ GET /ghost-stories/A/1
 
 ---
 
+### GET /ghost-stories/my
+Get all ghost stories created by the authenticated user. **Requires authentication.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Response** `200 OK`
+```json
+[
+  {
+    "id": "Qterw-A-1",
+    "name": "Black Cat",
+    "class": "A",
+    "summary": "...",
+    "mediumToEnter": "...",
+    "description": "...",
+    "author": "<codename>"
+  }
+]
+```
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid token |
+
+---
+
 ### POST /ghost-stories
 Create a new ghost story. **Requires authentication.**
 

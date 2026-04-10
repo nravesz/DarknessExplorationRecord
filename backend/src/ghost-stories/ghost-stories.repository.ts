@@ -32,6 +32,10 @@ export class GhostStoriesRepository {
 		return this.ghostStoryModel.findOne({ class: ghostClass, storyId }).populate('author', 'codename');
 	}
 
+	async getByAuthor(userId: string) {
+		return this.ghostStoryModel.find({ author: userId }).populate('author', 'codename');
+	}
+
 	async createGhostStory(dto: CreateGhostStoryDTO, userId: string) {
 		const session = await this.ghostStoryModel.db.startSession();
 		session.startTransaction();

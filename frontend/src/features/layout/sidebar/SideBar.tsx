@@ -1,4 +1,4 @@
-import { Home, User, Settings, LogIn, LogOut, Ghost } from 'lucide-react';
+import { Home, User, LogIn, LogOut, Ghost } from 'lucide-react';
 import { ROUTES } from '../../../routes';
 import { useAuth } from '../../../hooks/useAuth';
 import { useLogout } from '../../auth/logout/hooks/useLogout';
@@ -22,8 +22,7 @@ function SideBar() {
       )}
       <SideBarButton name={"Home"} icon={Home} route={ROUTES.HOME} />
       <SideBarButton name={"Ghost Stories"} icon={Ghost} route={ROUTES.GHOST_STORIES} />
-      {/* <SideBarButton name={"User"} icon={User} route={ROUTES.USER} />
-      <SideBarButton name={"Settings"} icon={Settings} route={ROUTES.SETTINGS} /> */}
+      {isLoggedIn && <SideBarButton name={"Profile"} icon={User} route={ROUTES.USER} />}
       {isLoggedIn ? (
         <button
           onClick={() => logout()}

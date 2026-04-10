@@ -10,6 +10,13 @@ Accept: application/json
 
 ###
 
+# Get my ghost stories (requires authentication)
+GET http://localhost:3000/ghost-stories/my
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkMmE5MGEzNGMyZjAwMDJjZGIiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc1Njc4MzYxLCJleHAiOjE3NzU2NzkyNjF9.JDnbv6Z--aw03B4_iwZXr3mLc74UmWP7oKxp7kn06ds
+
+###
+
 # Create a ghost story (requires authentication)
 POST http://localhost:3000/ghost-stories
 Content-Type: application/json
@@ -21,6 +28,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkM
     "class": "A",
     "summary": "A ghost story about a strange entity in the shape of a black cat that can manipulate intelligent beings' mind and action.",
     "mediumToEnter": "Found in the Mermaid Tomb.",
-    "description": "The said enitity was, in fact, Kim Soleum who transformed into cat with Street Stamps, used the Necronomicon (Easy Korean Revised Edition) to show illusion of a great being, then spoke to the employees in human language with a Tattoo Sticker with musical note design."
+    "description": "The said entity was, in fact, Kim Soleum who transformed into cat with Street Stamps, used the Necronomicon (Easy Korean Revised Edition) to show illusion of a great being, then spoke to the employees in human language with a Tattoo Sticker with musical note design."
 }
 
