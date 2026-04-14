@@ -5,28 +5,28 @@ import { GhostClass } from './enums/ghost-stories.enum';
 @Schema()
 export class GhostStory {
 	@Prop({ required: true })
-	storyId: number;
+	storyId!: number;
 
 	@Prop({ require: true })
-	name: string;
+	name!: string;
 
 	@Prop({
 		required: true,
 		enum: GhostClass,
 	})
-	class: GhostClass;
+	class!: GhostClass;
 
 	@Prop()
-	summary: string;
+	summary!: string;
 
 	@Prop()
-	mediumToEnter: string;
+	mediumToEnter!: string;
 
 	@Prop()
-	description: string;
+	description!: string;
 
 	@Prop({ type: Types.ObjectId, ref: 'User', required: true })
-	author: Types.ObjectId;
+	author!: Types.ObjectId;
 }
 
 export const GhostStorySchema = SchemaFactory.createForClass(GhostStory);

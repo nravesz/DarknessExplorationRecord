@@ -4,16 +4,16 @@ import { Types } from 'mongoose';
 @Schema()
 export class Record {
 	@Prop({ type: Types.ObjectId, ref: 'GhostStory', required: true })
-	ghostStory: Types.ObjectId;
+	ghostStory!: Types.ObjectId;
 
 	@Prop({ type: Types.ObjectId, ref: 'User', required: true })
-	user: Types.ObjectId;
+	user!: Types.ObjectId;
 
 	@Prop()
-	notes: string;
+	notes!: string;
 
 	@Prop({ default: Date.now })
-	encounteredAt: Date;
+	encounteredAt!: Date;
 }
 
 export const RecordSchema = SchemaFactory.createForClass(Record);

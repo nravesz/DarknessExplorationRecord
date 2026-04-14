@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateRecordDTO } from './dto/create-record.dto';
 import { RecordsService } from './records.service';
@@ -10,6 +10,14 @@ export class RecordsController {
 	@Get()
 	async getAll() {
 		return this.recordsService.getAll();
+	}
+
+	@Get(':class/:storyId')
+	async getByGhostStory(
+		@Param('class') ghostClass: string,
+		@Param('storyId') storyId: number
+	) {
+		return this.recordsService.getByGhostStory(ghostClass, storyId);
 	}
 
 	@Post()

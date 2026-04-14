@@ -250,6 +250,44 @@ Get all records. **Public.**
 
 ---
 
+### GET /records/:class/:storyId
+Get all records for a specific ghost story by class and story ID. **Public.**
+
+**Path parameters**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| class | string | Ghost class (`A`, `B`, `C`, `D`, `Twilight`) |
+| storyId | number | Numeric story ID within the class |
+
+**Example**
+```
+GET /records/A/1
+```
+
+**Response** `200 OK`
+```json
+[
+  {
+    "id": "<record_id>",
+    "ghostStory": {
+      "id": "Qterw-A-1",
+      "name": "Black Cat",
+      "class": "A"
+    },
+    "user": "<codename>",
+    "notes": "...",
+    "encounteredAt": "2026-04-10T00:00:00.000Z"
+  }
+]
+```
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 404 | Ghost story not found |
+
+---
+
 ### POST /records
 Log a new record for a ghost story. **Requires authentication.**
 

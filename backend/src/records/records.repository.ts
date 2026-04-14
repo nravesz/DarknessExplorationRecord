@@ -19,6 +19,16 @@ export class RecordsRepository {
 			.populate('ghostStory', 'name class storyId');
 	}
 
+	async getByGhostStory(ghostClass: string, storyId: number) {
+		const ghostStory = await this.ghostStoryModel.findOne({ class: ghostClass, storyId });
+		if (!ghostStory) throw new NotFoundException('Ghost story not found');
+
+		return this.recordModel
+			.find({ ghostStory: ghostStory._id })
+			.populate('user', 'codename')
+			.populate('ghostStory', 'name class storyId');
+	}
+
 	async create(dto: CreateRecordDTO, userId: string) {
 		const ghostStory = await this.ghostStoryModel.findOne({ class: dto.class, storyId: dto.storyId });
 		if (!ghostStory) throw new NotFoundException('Ghost story not found');

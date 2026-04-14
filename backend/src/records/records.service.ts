@@ -25,6 +25,11 @@ export class RecordsService {
 		return docs.map((doc) => this.toResponse(doc));
 	}
 
+	async getByGhostStory(ghostClass: string, storyId: number) {
+		const docs = await this.repository.getByGhostStory(ghostClass, storyId);
+		return docs.map((doc) => this.toResponse(doc));
+	}
+
 	async create(dto: CreateRecordDTO, userId: string) {
 		const doc = await this.repository.create(dto, userId);
 		return this.toResponse(doc);

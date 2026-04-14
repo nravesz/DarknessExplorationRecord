@@ -4,6 +4,12 @@ Accept: application/json
 
 ###
 
+# Get all records for a specific ghost story
+GET http://localhost:3000/records/A/1
+Accept: application/json
+
+###
+
 # Log a new record (requires authentication)
 POST http://localhost:3000/records
 Content-Type: application/json
