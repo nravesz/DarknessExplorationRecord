@@ -1,0 +1,17 @@
+# Get all records
+GET http://localhost:3000/records
+Accept: application/json
+
+###
+
+# Log a new record (requires authentication)
+POST http://localhost:3000/records
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkMmE5MGEzNGMyZjAwMDJjZGIiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc1ODQ4OTU4LCJleHAiOjE3NzU4NDk4NTh9.Dxrx7QSyA1wrIN5tyJGc0IWpml19Kn7hYVs5I4Hb1Y0
+
+{
+    "class": "A",
+    "storyId": 1,
+    "notes": "Encountered at the Mermaid Tomb."
+}

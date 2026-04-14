@@ -6,6 +6,7 @@ import { GhostStoryModule } from './ghost-stories/ghost-stories.module';
 import { UserModule } from './user/user.model';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { RecordsModule } from './records/records.module';
 
 @Module({
 	imports: [
@@ -20,7 +21,8 @@ import { AuthModule } from './auth/auth.module';
 		}),
 		UserModule,
 		GhostStoryModule,
-		AuthModule
+		AuthModule,
+		RecordsModule,
 	],
 	controllers: [AppController],
 	providers: [AppService],

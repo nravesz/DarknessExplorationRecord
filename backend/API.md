@@ -226,6 +226,78 @@ Authorization: Bearer <accessToken>
 
 ---
 
+## Records
+
+### GET /records
+Get all records. **Public.**
+
+**Response** `200 OK`
+```json
+[
+  {
+    "id": "<record_id>",
+    "ghostStory": {
+      "id": "Qterw-A-1",
+      "name": "Black Cat",
+      "class": "A"
+    },
+    "user": "<codename>",
+    "notes": "...",
+    "encounteredAt": "2026-04-10T00:00:00.000Z"
+  }
+]
+```
+
+---
+
+### POST /records
+Log a new record for a ghost story. **Requires authentication.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Request body**
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| class | string | yes | Ghost class: `A`, `B`, `C`, `D`, or `Twilight` |
+| storyId | number | yes | Numeric story ID within the class |
+| notes | string | no | Personal notes about the encounter |
+
+**Example**
+```json
+{
+  "class": "A",
+  "storyId": 1,
+  "notes": "Encountered near the old bridge at midnight."
+}
+```
+
+**Response** `201 Created`
+```json
+{
+  "id": "<record_id>",
+  "ghostStory": {
+    "id": "Qterw-A-1",
+    "name": "Black Cat",
+    "class": "A"
+  },
+  "user": "<codename>",
+  "notes": "Encountered near the old bridge at midnight.",
+  "encounteredAt": "2026-04-10T00:00:00.000Z"
+}
+```
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 400 | Validation failed |
+| 401 | Missing or invalid token |
+| 404 | Ghost story not found |
+
+---
+
 ## Ghost Classes
 
 | Class | Description |
