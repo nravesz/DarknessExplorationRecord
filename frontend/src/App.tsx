@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './features/Layout';
 import Description from './features/ghost-story/Description';
+import Records from './features/ghost-story/Records';
 import GhostStory from './features/ghost-story/GhostStory';
 import Overview from './features/ghost-story/Overview';
 import CreateGhostStoryPage from './pages/CreateGhostStoryPage';
@@ -25,7 +26,7 @@ function App() {
           <Route path={OVERVIEW} element={<Overview />} />
           <Route path={DESCRIPTION} element={<Description />} />
           <Route path={MANUAL} element={<div>Procedure Manual</div>} />
-          <Route path={RECORDS} element={<div>Darkness Exploration Records</div>} />
+          <Route path={RECORDS} element={<Records />} />
         </Route>
         <Route path={ROUTES.USER} element={<ProfilePage />} />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
