@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getMyGhostStories } from '../../ghost-stories/api/ghostStory.service';
-import type { IGhostStory } from '../../../interfaces/IGhostStory';
+import type { IGhostStory } from '../../ghost-story/interfaces/IGhostStory';
 
 export function useMyGhostStories() {
   const [stories, setStories] = useState<IGhostStory[]>([]);

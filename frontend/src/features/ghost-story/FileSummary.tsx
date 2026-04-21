@@ -1,4 +1,4 @@
-import type { IGhostStory } from "../../interfaces/IGhostStory";
+import type { IGhostStory } from "./interfaces/IGhostStory";
 
 function FileSummary({ story }: { story: IGhostStory }) {
   return (

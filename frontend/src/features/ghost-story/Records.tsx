@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
-import type { IGhostStory } from '../../interfaces/IGhostStory';
+import type { IGhostStory } from './interfaces/IGhostStory';
 import { useRecords } from './hooks/useRecords';
 import { useAuth } from '../common/hooks/useAuth';
 import RecordForm from './RecordForm';
