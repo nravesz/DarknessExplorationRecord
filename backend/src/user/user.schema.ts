@@ -6,16 +6,16 @@ export class User {
 		unique: true,
 		required: true,
 	})
-	email: string;
+	email!: string;
 
 	@Prop({ required: true })
-	password: string;
+	password!: string;
 
 	@Prop({ required: true })
-	name: string;
+	name!: string;
 
 	@Prop({ unique: true, required: true })
-	codename: string;
+	codename!: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

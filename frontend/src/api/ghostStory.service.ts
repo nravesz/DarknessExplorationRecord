@@ -1,5 +1,6 @@
 import { api } from './api';
 import type { IGhostStory } from '../interfaces/IGhostStory';
+import type { IRecord } from '../features/ghost-story/interfaces/IRecord';
 
 export interface ICreateGhostStoryPayload {
   name: string;
@@ -24,6 +25,11 @@ export const getMyGhostStories = async (): Promise<IGhostStory[]> => {
   const response = await api.get<IGhostStory[]>('/ghost-stories/my', {
     headers: { Authorization: `Bearer ${token}` },
   });
+  return response.data;
+};
+
+export const getRecords = async (ghostClass: string, storyId: string): Promise<IRecord[]> => {
+  const response = await api.get<IRecord[]>(`/records/${ghostClass}/${storyId}`);
   return response.data;
 };
 
