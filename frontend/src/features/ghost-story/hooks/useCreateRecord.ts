@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-import { createRecord } from '../../../api/ghostStory.service';
+import { createRecord } from '../api/ghostStory.service';
 
 export function useCreateRecord(ghostClass: string, storyId: number, onSuccess: () => void) {
   const [notes, setNotes] = useState('');

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { getRecords } from '../../../api/ghostStory.service';
+import { getRecords } from '../api/ghostStory.service';
 import type { IRecord } from '../interfaces/IRecord';
 
 export function useRecords(ghostClass: string, storyId: string) {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getGhostStories, getGhostStory, getMyGhostStories } from '../api/ghostStory.service';
+import { getGhostStories, getMyGhostStories } from '../features/ghost-stories/api/ghostStory.service';
+import { getGhostStory } from '../features/ghost-story/api/ghostStory.service';
 import type { IGhostStory } from '../interfaces/IGhostStory';
 
 export function useGhostStories() {
