@@ -1,4 +1,4 @@
-import type { IGhostStory } from '../ghost-story/interfaces/IGhostStory';
+import type { IGhostStory } from '../common/interfaces/IGhostStory';
 
 function GhostStoryItem({ story, onClick }: { story: IGhostStory; onClick: () => void }) {
   return (

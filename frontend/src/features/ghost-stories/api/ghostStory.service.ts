@@ -1,5 +1,5 @@
 import { api } from '../../../api/api';
-import type { IGhostStory } from '../../ghost-story/interfaces/IGhostStory';
+import type { IGhostStory } from '../../common/interfaces/IGhostStory';
 
 export interface ICreateGhostStoryPayload {
   name: string;

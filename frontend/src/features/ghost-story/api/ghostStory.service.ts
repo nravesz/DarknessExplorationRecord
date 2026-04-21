@@ -1,5 +1,5 @@
 import { api } from '../../../api/api';
-import type { IGhostStory } from '../interfaces/IGhostStory';
+import type { IGhostStory } from '../../common/interfaces/IGhostStory';
 import type { IRecord } from '../interfaces/IRecord';
 import type { ICreateRecordPayload } from '../interfaces/ICreateRecordPayload';
 
