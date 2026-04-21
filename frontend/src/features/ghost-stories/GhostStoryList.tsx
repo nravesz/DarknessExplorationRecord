@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../common/hooks/useAuth';
 import { useGhostStories } from './hooks/useGhostStories';
 import type { IGhostStory } from '../../interfaces/IGhostStory';
 import { ghostStoryPath, ROUTES } from '../../routes';
