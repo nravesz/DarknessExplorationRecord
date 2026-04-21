@@ -1,6 +1,7 @@
 import { api } from './api';
 import type { IGhostStory } from '../interfaces/IGhostStory';
 import type { IRecord } from '../features/ghost-story/interfaces/IRecord';
+import type { ICreateRecordPayload } from '../features/ghost-story/interfaces/ICreateRecordPayload';
 
 export interface ICreateGhostStoryPayload {
   name: string;
@@ -36,6 +37,14 @@ export const getRecords = async (ghostClass: string, storyId: string): Promise<I
 export const createGhostStory = async (payload: ICreateGhostStoryPayload): Promise<IGhostStory> => {
   const token = localStorage.getItem('accessToken');
   const response = await api.post<IGhostStory>('/ghost-stories', payload, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
+
+export const createRecord = async (payload: ICreateRecordPayload): Promise<IRecord> => {
+  const token = localStorage.getItem('accessToken');
+  const response = await api.post<IRecord>('/records', payload, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.data;

@@ -15,6 +15,7 @@ export class RecordsRepository {
 	async getAll() {
 		return this.recordModel
 			.find()
+			.sort({ _id: -1 })
 			.populate('user', 'codename')
 			.populate('ghostStory', 'name class storyId');
 	}
@@ -25,6 +26,7 @@ export class RecordsRepository {
 
 		return this.recordModel
 			.find({ ghostStory: ghostStory._id })
+			.sort({ _id: -1 })
 			.populate('user', 'codename')
 			.populate('ghostStory', 'name class storyId');
 	}
