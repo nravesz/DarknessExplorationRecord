@@ -1,7 +1,7 @@
 import { Home, User, LogIn, LogOut, Ghost } from 'lucide-react';
 import { ROUTES } from '../../../routes';
-import { useAuth } from '../../../hooks/useAuth';
-import { useLogout } from '../../auth/logout/hooks/useLogout';
+import { useAuth } from '../../common/hooks/useAuth';
+import { useLogout } from '../../auth/hooks/useLogout';
 import SideBarButton from './SideBarButton';
 import Logo from '../Logo';
 

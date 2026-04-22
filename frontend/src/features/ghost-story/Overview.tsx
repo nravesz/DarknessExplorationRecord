@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import type { IGhostStory } from "../../interfaces/IGhostStory";
+import type { IGhostStory } from "../common/interfaces/IGhostStory";
 import Description from "./Description";
 import FileSummary from "./FileSummary";
 

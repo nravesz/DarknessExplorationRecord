@@ -1,4 +1,4 @@
-import GhostStoryForm from '../features/ghost-stories/create/GhostStoryForm';
+import GhostStoryForm from '../features/ghost-stories/GhostStoryForm';
 
 function CreateGhostStoryPage() {
   return <GhostStoryForm />;

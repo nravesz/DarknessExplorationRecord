@@ -1,4 +1,4 @@
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../common/hooks/useAuth';
 import ProfileStoryList from './ProfileStoryList';
 
 function Profile() {

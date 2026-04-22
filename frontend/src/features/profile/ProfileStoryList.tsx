@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useMyGhostStories } from '../../hooks/useGhostStory';
-import type { IGhostStory } from '../../interfaces/IGhostStory';
+import { useMyGhostStories } from './hooks/useMyGhostStories';
+import type { IGhostStory } from '../common/interfaces/IGhostStory';
 import { ghostStoryPath } from '../../routes';
 import GhostStoryItem from '../ghost-stories/GhostStoryItem';
 import Pagination from '../ghost-stories/Pagination';

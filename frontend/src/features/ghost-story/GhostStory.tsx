@@ -1,5 +1,5 @@
 import { Outlet, useParams } from "react-router-dom";
-import { useGhostStory } from "../../hooks/useGhostStory";
+import { useGhostStory } from './hooks/useGhostStory';
 import TabBar from "./TabBar";
 
 function GhostStory() {

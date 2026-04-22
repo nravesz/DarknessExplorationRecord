@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLogin } from './hooks/useLogin';
 import type { ILoginPayload } from './interfaces/ILoginPayload';
-import { ROUTES } from '../../../routes';
+import { ROUTES } from '../../routes';
 
 function Login() {
   const [email, setEmail] = useState('');

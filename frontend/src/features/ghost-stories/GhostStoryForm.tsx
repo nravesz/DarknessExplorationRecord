@@ -1,4 +1,4 @@
-import { useCreateGhostStory } from './useCreateGhostStory';
+import { useCreateGhostStory } from './hooks/useCreateGhostStory';
 
 const GHOST_CLASSES = ['A', 'B', 'C', 'D', 'Twilight'];
 
