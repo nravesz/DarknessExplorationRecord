@@ -12,20 +12,7 @@ export class GhostStoriesRepository {
 	) {}
 
 	async getAll() {
-		const session = await this.ghostStoryModel.db.startSession();
-		session.startTransaction();
-
-		try {
-			const doc = await this.ghostStoryModel.find().populate('author', 'codename').session(session);
-
-			await session.commitTransaction();
-			session.endSession();
-			return doc;
-		} catch (err) {
-			await session.abortTransaction();
-			session.endSession();
-			throw err;
-		}
+		return this.ghostStoryModel.find().populate('author', 'codename');
 	}
 
 	async getOne(ghostClass: string, storyId: number) {
