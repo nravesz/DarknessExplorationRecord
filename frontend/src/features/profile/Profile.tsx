@@ -1,5 +1,12 @@
+import { Outlet } from 'react-router-dom';
 import { useAuth } from '../common/hooks/useAuth';
-import ProfileStoryList from './ProfileStoryList';
+import TabBar from '../common/components/TabBar';
+import { ROUTES } from '../../routes';
+
+const TABS = [
+  { label: 'Ghost Stories', to: ROUTES.PROFILE_TABS.GHOST_STORIES },
+  { label: 'Records', to: ROUTES.PROFILE_TABS.RECORDS },
+];
 
 function Profile() {
   const { email, codename } = useAuth();
@@ -18,10 +25,8 @@ function Profile() {
           <span className="text-sm">{email}</span>
         </div>
       </div>
-      <div>
-        <h2 className="text-lg font-semibold mb-3">My Stories</h2>
-        <ProfileStoryList />
-      </div>
+      <TabBar tabs={TABS} />
+      <Outlet />
     </div>
   );
 }

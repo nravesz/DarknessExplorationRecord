@@ -13,6 +13,10 @@ export const ROUTES = {
     MANUAL: "manual",
     RECORDS: "records",
   },
+  PROFILE_TABS: {
+    GHOST_STORIES: "ghost-stories",
+    RECORDS: "records",
+  },
 };
 
 export const ghostStoryPath = (id: string) => `/ghost-stories/${id}`;

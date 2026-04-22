@@ -8,6 +8,11 @@ export const getGhostStory = async (ghostClass: string, id: string): Promise<IGh
   return response.data;
 };
 
+export const getAllRecords = async (): Promise<IRecord[]> => {
+  const response = await api.get<IRecord[]>('/records');
+  return response.data;
+};
+
 export const getRecords = async (ghostClass: string, storyId: string): Promise<IRecord[]> => {
   const response = await api.get<IRecord[]>(`/records/${ghostClass}/${storyId}`);
   return response.data;

@@ -10,9 +10,12 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import RegisterPage from './pages/RegisterPage';
+import ProfileStoryList from './features/profile/ProfileStoryList';
+import ProfileRecordList from './features/profile/ProfileRecordList';
 import { ROUTES } from './routes';
 
 const { OVERVIEW, DESCRIPTION, MANUAL, RECORDS } = ROUTES.GHOST_STORY_TABS;
+const { GHOST_STORIES: PROFILE_GHOST_STORIES, RECORDS: PROFILE_RECORDS } = ROUTES.PROFILE_TABS;
 
 function App() {
   return (
@@ -28,7 +31,11 @@ function App() {
           <Route path={MANUAL} element={<div>Procedure Manual</div>} />
           <Route path={RECORDS} element={<Records />} />
         </Route>
-        <Route path={ROUTES.USER} element={<ProfilePage />} />
+        <Route path={ROUTES.USER} element={<ProfilePage />}>
+          <Route index element={<Navigate to={PROFILE_GHOST_STORIES} replace />} />
+          <Route path={PROFILE_GHOST_STORIES} element={<ProfileStoryList />} />
+          <Route path={PROFILE_RECORDS} element={<ProfileRecordList />} />
+        </Route>
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
         <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
       </Route>

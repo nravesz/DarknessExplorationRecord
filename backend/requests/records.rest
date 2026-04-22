@@ -4,6 +4,12 @@ Accept: application/json
 
 ###
 
+# Get my records (requires authentication)
+GET http://localhost:3000/records/my
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkMmE5MGEzNGMyZjAwMDJjZGIiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc2ODkyMzM0LCJleHAiOjE3NzY4OTMyMzR9.t0hmwQoK3o2G4fqUCioOlUzmMT8ju-OhUf6nuScATs4
+###
+
 # Get all records for a specific ghost story
 GET http://localhost:3000/records/A/1
 Accept: application/json

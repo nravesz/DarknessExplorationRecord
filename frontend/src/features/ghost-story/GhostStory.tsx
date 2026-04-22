@@ -1,6 +1,13 @@
 import { Outlet, useParams } from "react-router-dom";
 import { useGhostStory } from './hooks/useGhostStory';
-import TabBar from "./TabBar";
+import TabBar from "../common/components/TabBar";
+import { ROUTES } from "../../routes";
+
+const TABS = [
+  { label: 'Overview', to: ROUTES.GHOST_STORY_TABS.OVERVIEW },
+  { label: 'Manual', to: ROUTES.GHOST_STORY_TABS.MANUAL },
+  { label: 'Records', to: ROUTES.GHOST_STORY_TABS.RECORDS },
+];
 
 function GhostStory() {
   const { id } = useParams() as { id: string };
@@ -22,7 +29,7 @@ function GhostStory() {
 			</div>
 		</div>
 
-		<TabBar />
+		<TabBar tabs={TABS} />
 
 		<div className="mt-10">
 			<Outlet context={story} />
