@@ -7,12 +7,13 @@ import { ROUTES } from '../../routes';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [hasError, setHasError] = useState(false);
 
-  const { mutate, isPending, error } = useLogin();
+  const { mutate, isPending } = useLogin();
 
   const handleSubmit = () => {
     const payload: ILoginPayload = { email, password };
-    mutate(payload);
+    mutate(payload, { onError: () => setHasError(true) });
   };
 
   return (
@@ -30,7 +31,7 @@ function Login() {
             className="bg-transparent outline-none w-full placeholder:text-base-content/20"
             placeholder="Your email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); setHasError(false); }}
           />
         </div>
 
@@ -41,15 +42,15 @@ function Login() {
             className="bg-transparent outline-none w-full placeholder:text-base-content/20"
             placeholder="••••••••"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => { setPassword(e.target.value); setHasError(false); }}
           />
         </div>
       </div>
 
-      {error && <p className="text-error text-sm mb-4">Invalid credentials. Please try again.</p>}
+      {hasError && <p className="text-error text-sm mb-4">Invalid credentials. Please try again.</p>}
 
       <div className="flex items-center gap-4">
-        <button className="btn btn-primary" onClick={handleSubmit} disabled={isPending}>
+        <button className="btn btn-primary min-w-24" onClick={handleSubmit} disabled={isPending}>
           {isPending ? 'Logging in...' : 'Login'}
         </button>
         <Link to={ROUTES.REGISTER} className="text-sm text-base-content/50 hover:text-base-content transition-colors">
