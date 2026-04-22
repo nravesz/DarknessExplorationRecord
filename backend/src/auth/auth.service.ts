@@ -15,7 +15,7 @@ export class AuthService {
 	async login(createUserDTO: LoginDTO): Promise<LoginResponseDTO> {
 		const user = await this.validateUser(createUserDTO);
 		if (!user) {
-			throw new UnauthorizedException('Invalidate credentials');
+			throw new UnauthorizedException('Invalid credentials');
 		}
 		const payload = {
 			sub: user.id,
