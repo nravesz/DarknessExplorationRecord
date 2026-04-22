@@ -14,9 +14,6 @@ export const getRecords = async (ghostClass: string, storyId: string): Promise<I
 };
 
 export const createRecord = async (payload: ICreateRecordPayload): Promise<IRecord> => {
-  const token = localStorage.getItem('accessToken');
-  const response = await api.post<IRecord>('/records', payload, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  const response = await api.post<IRecord>('/records', payload);
   return response.data;
 };

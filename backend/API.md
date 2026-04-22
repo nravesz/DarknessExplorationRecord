@@ -87,6 +87,26 @@ The `refreshToken` is set automatically as an `HttpOnly` cookie (`Max-Age: 7 day
 
 ---
 
+### POST /auth/refresh
+Obtain a new access token using the refresh token cookie.
+
+**Cookies**
+The `refreshToken` HttpOnly cookie must be present (set automatically on login).
+
+**Response** `200 OK`
+```json
+{
+  "accessToken": "<new_jwt_access_token>"
+}
+```
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid refresh token |
+
+---
+
 ### POST /auth/logout
 Log out and clear the refresh token cookie.
 

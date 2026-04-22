@@ -7,7 +7,7 @@ export class GhostStory {
 	@Prop({ required: true })
 	storyId!: number;
 
-	@Prop({ require: true })
+	@Prop({ required: true })
 	name!: string;
 
 	@Prop({

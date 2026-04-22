@@ -15,7 +15,7 @@ export class AuthService {
 	async login(createUserDTO: LoginDTO): Promise<LoginResponseDTO> {
 		const user = await this.validateUser(createUserDTO);
 		if (!user) {
-			throw new UnauthorizedException('Invalidate credentials');
+			throw new UnauthorizedException('Invalid credentials');
 		}
 		const payload = {
 			sub: user.id,
@@ -37,6 +37,15 @@ export class AuthService {
 			codename: user.codename,
 		};
 		return doc;
+	}
+
+	refresh(refreshToken: string): { accessToken: string } {
+		const payload = this.jwtService.verify(refreshToken);
+		const accessToken = this.jwtService.sign(
+			{ sub: payload.sub, email: payload.email },
+			{ expiresIn: '15m' }
+		);
+		return { accessToken };
 	}
 
 	async validateUser(
