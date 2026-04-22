@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { GhostStory } from 'src/ghost-stories/ghost-stories.schema';
+import { GhostStory } from '../ghost-stories/ghost-stories.schema';
 import { CreateRecordDTO } from './dto/create-record.dto';
 import { Record } from './records.schema';
 
