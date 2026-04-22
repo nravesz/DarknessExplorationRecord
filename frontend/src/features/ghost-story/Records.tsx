@@ -59,7 +59,11 @@ function Records() {
                 </span>
               </div>
               {record.notes && (
-                <p className="text-sm text-base-content/70">{record.notes}</p>
+                <div className="space-y-2">
+                  {record.notes.split('\n').map((p, i) => (
+                    <p key={i} className="text-sm text-base-content/70 whitespace-pre-line">{p}</p>
+                  ))}
+                </div>
               )}
             </div>
           ))}
