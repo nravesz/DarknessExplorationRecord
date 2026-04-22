@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { GhostClass } from 'src/ghost-stories/enums/ghost-stories.enum';
+import { GhostClass } from '../../ghost-stories/enums/ghost-stories.enum';
 
 export class CreateRecordDTO {
 	@IsNotEmpty()
