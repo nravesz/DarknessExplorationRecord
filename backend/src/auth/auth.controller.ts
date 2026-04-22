@@ -1,5 +1,5 @@
-import { Body, Controller, HttpCode, Post, Res } from '@nestjs/common';
-import type { Response } from 'express';
+import { Body, Controller, HttpCode, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import type { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { LoginDTO } from './dto/login.dto';
 import { LoginResponseDTO } from './dto/login-response.dto';
@@ -23,6 +23,14 @@ export class AuthController {
 		});
 
 		return { accessToken: data.accessToken, email: data.email, codename: data.codename };
+	}
+
+	@Post('refresh')
+	@HttpCode(200)
+	refresh(@Req() req: Request): { accessToken: string } {
+		const token = req.cookies?.refreshToken;
+		if (!token) throw new UnauthorizedException('No refresh token provided');
+		return this.authService.refresh(token);
 	}
 
 	@Post('logout')

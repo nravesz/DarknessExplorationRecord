@@ -39,6 +39,15 @@ export class AuthService {
 		return doc;
 	}
 
+	refresh(refreshToken: string): { accessToken: string } {
+		const payload = this.jwtService.verify(refreshToken);
+		const accessToken = this.jwtService.sign(
+			{ sub: payload.sub, email: payload.email },
+			{ expiresIn: '15m' }
+		);
+		return { accessToken };
+	}
+
 	async validateUser(
 		createUserDTO: LoginDTO
 	): Promise<{ id: string; email: string; codename: string } | null> {
