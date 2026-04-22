@@ -1,17 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import { ROUTES } from '../../routes';
 import './TabBar.css';
 
-const TABS = [
-  { label: 'Overview', to: ROUTES.GHOST_STORY_TABS.OVERVIEW },
-{ label: 'Manual', to: ROUTES.GHOST_STORY_TABS.MANUAL },
-  { label: 'Records', to: ROUTES.GHOST_STORY_TABS.RECORDS },
-];
+interface Tab {
+  label: string;
+  to: string;
+}
 
-function TabBar() {
+function TabBar({ tabs }: { tabs: Tab[] }) {
   return (
     <div className='flex'>
-      {TABS.map(({ label, to }) => (
+      {tabs.map(({ label, to }) => (
         <NavLink
           key={to}
           to={to}

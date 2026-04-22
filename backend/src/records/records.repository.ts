@@ -20,6 +20,14 @@ export class RecordsRepository {
 			.populate('ghostStory', 'name class storyId');
 	}
 
+	async getByAuthor(userId: string) {
+		return this.recordModel
+			.find({ user: userId })
+			.sort({ _id: -1 })
+			.populate('user', 'codename')
+			.populate('ghostStory', 'name class storyId');
+	}
+
 	async getByGhostStory(ghostClass: string, storyId: number) {
 		const ghostStory = await this.ghostStoryModel.findOne({ class: ghostClass, storyId });
 		if (!ghostStory) throw new NotFoundException('Ghost story not found');

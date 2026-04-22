@@ -26,6 +26,11 @@ export class RecordsService {
 		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));
 	}
 
+	async getMyRecords(userId: string) {
+		const docs = await this.repository.getByAuthor(userId);
+		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));
+	}
+
 	async getByGhostStory(ghostClass: string, storyId: number) {
 		const docs = await this.repository.getByGhostStory(ghostClass, storyId);
 		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));

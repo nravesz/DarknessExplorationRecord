@@ -12,6 +12,12 @@ export class RecordsController {
 		return this.recordsService.getAll();
 	}
 
+	@Get('my')
+	@UseGuards(JwtAuthGuard)
+	async getMyRecords(@Request() req: any) {
+		return this.recordsService.getMyRecords(req.user.sub);
+	}
+
 	@Get(':class/:storyId')
 	async getByGhostStory(
 		@Param('class') ghostClass: string,
