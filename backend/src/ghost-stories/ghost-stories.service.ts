@@ -1,12 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 import { GhostStoriesRepository } from './ghost-stories.repository';
+import { IPopulatedGhostStory } from './interfaces/IPopulatedGhostStory';
 
 @Injectable()
 export class GhostStoriesService {
 	constructor(private repository: GhostStoriesRepository) {}
 
-	private toResponse(doc: any) {
+	private toResponse(doc: IPopulatedGhostStory) {
 		return {
 			id: `Qterw-${doc.class}-${doc.storyId}`,
 			name: doc.name,
@@ -20,22 +21,22 @@ export class GhostStoriesService {
 
 	async getAll() {
 		const docs = await this.repository.getAll();
-		return docs.map((doc) => this.toResponse(doc));
+		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedGhostStory));
 	}
 
 	async getOne(ghostClass: string, storyId: number) {
 		const doc = await this.repository.getOne(ghostClass, storyId);
 		if (!doc) throw new NotFoundException('Ghost story not found');
-		return this.toResponse(doc);
+		return this.toResponse(doc as unknown as IPopulatedGhostStory);
 	}
 
 	async getMyStories(userId: string) {
 		const docs = await this.repository.getByAuthor(userId);
-		return docs.map((doc) => this.toResponse(doc));
+		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedGhostStory));
 	}
 
 	async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO, userId: string) {
 		const doc = await this.repository.createGhostStory(createGhostStoryDTO, userId);
-		return this.toResponse(doc);
+		return this.toResponse(doc as unknown as IPopulatedGhostStory);
 	}
 }

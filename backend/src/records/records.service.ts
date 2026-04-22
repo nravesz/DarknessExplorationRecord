@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRecordDTO } from './dto/create-record.dto';
 import { RecordsRepository } from './records.repository';
+import { IPopulatedRecord } from './interfaces/IPopulatedRecord';
 
 @Injectable()
 export class RecordsService {
 	constructor(private repository: RecordsRepository) {}
 
-	private toResponse(doc: any) {
+	private toResponse(doc: IPopulatedRecord) {
 		return {
 			id: doc._id,
 			ghostStory: {
@@ -22,16 +23,16 @@ export class RecordsService {
 
 	async getAll() {
 		const docs = await this.repository.getAll();
-		return docs.map((doc) => this.toResponse(doc));
+		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));
 	}
 
 	async getByGhostStory(ghostClass: string, storyId: number) {
 		const docs = await this.repository.getByGhostStory(ghostClass, storyId);
-		return docs.map((doc) => this.toResponse(doc));
+		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));
 	}
 
 	async create(dto: CreateRecordDTO, userId: string) {
 		const doc = await this.repository.create(dto, userId);
-		return this.toResponse(doc);
+		return this.toResponse(doc as unknown as IPopulatedRecord);
 	}
 }
