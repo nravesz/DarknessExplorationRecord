@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 import { GhostStoriesRepository } from './ghost-stories.repository';
 
@@ -25,6 +25,7 @@ export class GhostStoriesService {
 
 	async getOne(ghostClass: string, storyId: number) {
 		const doc = await this.repository.getOne(ghostClass, storyId);
+		if (!doc) throw new NotFoundException('Ghost story not found');
 		return this.toResponse(doc);
 	}
 
