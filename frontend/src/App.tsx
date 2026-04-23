@@ -30,7 +30,7 @@ function App() {
           <Route index element={<Navigate to={OVERVIEW} replace />} />
           <Route path={OVERVIEW} element={<Overview />} />
           <Route path={DESCRIPTION} element={<Description />} />
-          <Route path={MANUAL} element={<div>Procedure Manual</div>} />
+          <Route path={MANUAL} element={<div>Researchers are working! Please, try not to die in this darkness in the meanwhile!</div>} />
           <Route path={RECORDS} element={<Records />} />
         </Route>
         <Route path={ROUTES.USER} element={<ProfilePage />}>

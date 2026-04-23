@@ -29,7 +29,7 @@
 - [ ] Ghost Stories:
     - [x] Lista
     - [x] Crear
-    - [ ] Editar
+    - [x] Editar
     - [ ] Secciones
         - [x] Overview
         - [ ] Manual

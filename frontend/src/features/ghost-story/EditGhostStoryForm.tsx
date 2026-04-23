@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ghostStoryPath } from '../../routes';
 import { useGhostStory } from './hooks/useGhostStory';
 import { useEditGhostStory } from './hooks/useEditGhostStory';
 import type { IGhostStory } from '../common/interfaces/IGhostStory';
@@ -19,6 +20,7 @@ function LabeledField({ label, children, bordered = true }: LabeledFieldProps) {
 }
 
 function EditGhostStoryFormInner({ story }: { story: IGhostStory }) {
+  const navigate = useNavigate();
   const { form, handleChange, submit, isPending, error, canSubmit } = useEditGhostStory(story);
 
   return (
@@ -75,9 +77,14 @@ function EditGhostStoryFormInner({ story }: { story: IGhostStory }) {
 
       {error && <p className="text-error text-sm mb-4">Failed to save changes. Please try again.</p>}
 
-      <button className="btn btn-primary" onClick={submit} disabled={!canSubmit || isPending}>
-        {isPending ? 'Saving...' : 'Save Changes'}
-      </button>
+      <div className="flex gap-2">
+        <button className="btn btn-primary" onClick={submit} disabled={!canSubmit || isPending}>
+          {isPending ? 'Saving...' : 'Save Changes'}
+        </button>
+        <button className="btn btn-ghost" onClick={() => navigate(ghostStoryPath(story.id))} disabled={isPending}>
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }
