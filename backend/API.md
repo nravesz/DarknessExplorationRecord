@@ -409,6 +409,30 @@ GET /records/A/1
 
 ---
 
+### DELETE /records/:id
+Delete a record. **Requires authentication. Only the record's author can delete it.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Path parameters**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| id | string | MongoDB ObjectId of the record |
+
+**Response** `204 No Content`
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid token |
+| 403 | Authenticated user is not the author |
+| 404 | Record not found |
+
+---
+
 ### PATCH /records/:id
 Update a record's notes. **Requires authentication. Only the author can edit.**
 

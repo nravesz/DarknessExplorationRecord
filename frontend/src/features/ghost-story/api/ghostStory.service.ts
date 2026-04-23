@@ -54,3 +54,7 @@ export const patchRecord = async (id: string, notes: string): Promise<IRecord> =
   const response = await api.patch<IRecord>(`/records/${id}`, { notes });
   return response.data;
 };
+
+export const deleteRecord = async (id: string): Promise<void> => {
+  await api.delete(`/records/${id}`);
+};

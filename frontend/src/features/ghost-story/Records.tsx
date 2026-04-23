@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useOutletContext, useParams } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
 import type { IGhostStory } from '../common/interfaces/IGhostStory';
 import { useRecords } from './hooks/useRecords';
 import { useAuth } from '../common/hooks/useAuth';
+import { deleteRecord } from './api/ghostStory.service';
 import RecordForm from './RecordForm';
 import EditRecordForm from './EditRecordForm';
 
@@ -17,6 +19,11 @@ function Records() {
   const { isLoggedIn, codename } = useAuth();
   const [showForm, setShowForm] = useState(false);
   const [editingRecordId, setEditingRecordId] = useState<string | null>(null);
+
+  const { mutate: deleteRec, isPending: isDeleting, variables: deletingId } = useMutation({
+    mutationFn: (id: string) => deleteRecord(id),
+    onSuccess: () => refetch(),
+  });
 
   function handleSuccess() {
     setShowForm(false);
@@ -67,12 +74,22 @@ function Records() {
                     <span className="text-sm font-semibold capitalize">Agent {record.user}</span>
                     <div className="flex items-center gap-3">
                       {record.user === codename && (
-                        <button
-                          className="text-xs text-base-content/40 hover:text-base-content transition-colors"
-                          onClick={() => { setShowForm(false); setEditingRecordId(record.id); }}
-                        >
-                          Edit
-                        </button>
+                        <>
+                          <button
+                            className="text-xs text-base-content/40 hover:text-base-content transition-colors"
+                            onClick={() => { setShowForm(false); setEditingRecordId(record.id); }}
+                            disabled={isDeleting && deletingId === record.id}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            className="text-xs text-error/60 hover:text-error transition-colors"
+                            onClick={() => deleteRec(record.id)}
+                            disabled={isDeleting && deletingId === record.id}
+                          >
+                            {isDeleting && deletingId === record.id ? 'Deleting...' : 'Delete'}
+                          </button>
+                        </>
                       )}
                       <span className="text-xs text-base-content/40 font-mono">
                         {new Date(record.encounteredAt).toLocaleDateString()}

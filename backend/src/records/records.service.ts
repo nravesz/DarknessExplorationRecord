@@ -37,6 +37,10 @@ export class RecordsService {
 		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));
 	}
 
+	async delete(recordId: string, userId: string) {
+		await this.repository.delete(recordId, userId);
+	}
+
 	async update(recordId: string, dto: UpdateRecordDTO, userId: string) {
 		const doc = await this.repository.update(recordId, dto, userId);
 		return this.toResponse(doc as unknown as IPopulatedRecord);

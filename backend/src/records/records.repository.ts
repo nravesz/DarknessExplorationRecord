@@ -40,6 +40,14 @@ export class RecordsRepository {
 			.populate('ghostStory', 'name class storyId');
 	}
 
+	async delete(recordId: string, userId: string) {
+		const record = await this.recordModel.findById(recordId);
+		if (!record) throw new NotFoundException('Record not found');
+		if (record.user.toString() !== userId) throw new ForbiddenException();
+
+		await record.deleteOne();
+	}
+
 	async update(recordId: string, dto: UpdateRecordDTO, userId: string) {
 		const record = await this.recordModel.findById(recordId);
 		if (!record) throw new NotFoundException('Record not found');
