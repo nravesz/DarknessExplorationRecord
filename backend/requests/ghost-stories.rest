@@ -29,6 +29,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkM
 
 ###
 
+# Delete a ghost story and its records (requires authentication, author only)
+DELETE http://localhost:3000/ghost-stories/A/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2OWNjMWRkMmE5MGEzNGMyZjAwMDJjZGIiLCJlbWFpbCI6ImFnZW50ZS5jYXJwaW5jaG9AZ21haWwuY29tIiwiaWF0IjoxNzc1NTkwNDI3LCJleHAiOjE3NzYxOTUyMjd9.I6EiCvD1v8r09I7KflTNqInroQqkzYYl-vtDa8hMqcE
+
+###
+
 # Create a ghost story (requires authentication)
 POST http://localhost:3000/ghost-stories
 Content-Type: application/json

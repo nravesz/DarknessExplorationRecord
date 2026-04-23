@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { GhostStoriesService } from './ghost-stories.service';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 import { UpdateGhostStoryDTO } from './dto/update-ghost-story.dto';
@@ -37,6 +37,17 @@ export class GhostStoriesController {
 		@Request() req: any
 	) {
 		return this.ghostStoriesService.update(ghostClass, storyId, dto, req.user.sub);
+	}
+
+	@Delete(':class/:storyId')
+	@UseGuards(JwtAuthGuard)
+	@HttpCode(204)
+	async delete(
+		@Param('class') ghostClass: string,
+		@Param('storyId', ParseIntPipe) storyId: number,
+		@Request() req: any
+	) {
+		await this.ghostStoriesService.delete(ghostClass, storyId, req.user.sub);
 	}
 
 	@Post()

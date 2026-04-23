@@ -241,6 +241,31 @@ Authorization: Bearer <accessToken>
 
 ---
 
+### DELETE /ghost-stories/:class/:storyId
+Delete a ghost story and all its associated records. **Requires authentication. Only the author can delete.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Path parameters**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| class | string | Ghost class (`A`, `B`, `C`, `D`, `Twilight`) |
+| storyId | number | Numeric story ID within the class |
+
+**Response** `204 No Content`
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid token |
+| 403 | Authenticated user is not the author |
+| 404 | Ghost story not found |
+
+---
+
 ### POST /ghost-stories
 Create a new ghost story. **Requires authentication.**
 

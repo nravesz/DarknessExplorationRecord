@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { ghostStoryPath } from '../../routes';
 import { useGhostStory } from './hooks/useGhostStory';
 import { useEditGhostStory } from './hooks/useEditGhostStory';
+import { useDeleteGhostStory } from './hooks/useDeleteGhostStory';
 import type { IGhostStory } from '../common/interfaces/IGhostStory';
 
 interface LabeledFieldProps {
@@ -22,6 +23,7 @@ function LabeledField({ label, children, bordered = true }: LabeledFieldProps) {
 function EditGhostStoryFormInner({ story }: { story: IGhostStory }) {
   const navigate = useNavigate();
   const { form, handleChange, submit, isPending, error, canSubmit } = useEditGhostStory(story);
+  const { deleteStory, isPending: isDeleting } = useDeleteGhostStory(story.id);
 
   return (
     <div>
@@ -77,12 +79,17 @@ function EditGhostStoryFormInner({ story }: { story: IGhostStory }) {
 
       {error && <p className="text-error text-sm mb-4">Failed to save changes. Please try again.</p>}
 
-      <div className="flex gap-2">
-        <button className="btn btn-primary" onClick={submit} disabled={!canSubmit || isPending}>
-          {isPending ? 'Saving...' : 'Save Changes'}
-        </button>
-        <button className="btn btn-ghost" onClick={() => navigate(ghostStoryPath(story.id))} disabled={isPending}>
-          Cancel
+      <div className="flex items-center justify-between">
+        <div className="flex gap-2">
+          <button className="btn btn-primary" onClick={submit} disabled={!canSubmit || isPending || isDeleting}>
+            {isPending ? 'Saving...' : 'Save Changes'}
+          </button>
+          <button className="btn btn-ghost" onClick={() => navigate(ghostStoryPath(story.id))} disabled={isPending || isDeleting}>
+            Cancel
+          </button>
+        </div>
+        <button className="btn btn-error btn-outline" onClick={deleteStory} disabled={isPending || isDeleting}>
+          {isDeleting ? 'Deleting...' : 'Delete'}
         </button>
       </div>
     </div>

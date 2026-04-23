@@ -45,4 +45,8 @@ export class GhostStoriesService {
 		const doc = await this.repository.update(ghostClass, storyId, dto, userId);
 		return this.toResponse(doc as unknown as IPopulatedGhostStory);
 	}
+
+	async delete(ghostClass: string, storyId: number, userId: string) {
+		await this.repository.delete(ghostClass, storyId, userId);
+	}
 }
