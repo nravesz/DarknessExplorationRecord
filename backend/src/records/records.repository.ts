@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { GhostStory } from '../ghost-stories/ghost-stories.schema';
 import { CreateRecordDTO } from './dto/create-record.dto';
+import { UpdateRecordDTO } from './dto/update-record.dto';
 import { Record } from './records.schema';
 
 @Injectable()
@@ -35,6 +36,17 @@ export class RecordsRepository {
 		return this.recordModel
 			.find({ ghostStory: ghostStory._id })
 			.sort({ _id: -1 })
+			.populate('user', 'codename')
+			.populate('ghostStory', 'name class storyId');
+	}
+
+	async update(recordId: string, dto: UpdateRecordDTO, userId: string) {
+		const record = await this.recordModel.findById(recordId);
+		if (!record) throw new NotFoundException('Record not found');
+		if (record.user.toString() !== userId) throw new ForbiddenException();
+
+		return this.recordModel
+			.findByIdAndUpdate(recordId, dto, { new: true })
 			.populate('user', 'codename')
 			.populate('ghostStory', 'name class storyId');
 	}

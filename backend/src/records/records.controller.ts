@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Request, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateRecordDTO } from './dto/create-record.dto';
+import { UpdateRecordDTO } from './dto/update-record.dto';
 import { RecordsService } from './records.service';
 
 @Controller('records')
@@ -24,6 +25,16 @@ export class RecordsController {
 		@Param('storyId', ParseIntPipe) storyId: number
 	) {
 		return this.recordsService.getByGhostStory(ghostClass, storyId);
+	}
+
+	@Patch(':id')
+	@UseGuards(JwtAuthGuard)
+	async update(
+		@Param('id') id: string,
+		@Body() dto: UpdateRecordDTO,
+		@Request() req: any
+	) {
+		return this.recordsService.update(id, dto, req.user.sub);
 	}
 
 	@Post()

@@ -4,6 +4,7 @@ import type { IGhostStory } from '../common/interfaces/IGhostStory';
 import { useRecords } from './hooks/useRecords';
 import { useAuth } from '../common/hooks/useAuth';
 import RecordForm from './RecordForm';
+import EditRecordForm from './EditRecordForm';
 
 function Records() {
   const story = useOutletContext<IGhostStory>();
@@ -13,8 +14,9 @@ function Records() {
   const storyId = Number(parts[parts.length - 1]);
 
   const { records, loading, error, refetch } = useRecords(ghostClass, String(storyId));
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, codename } = useAuth();
   const [showForm, setShowForm] = useState(false);
+  const [editingRecordId, setEditingRecordId] = useState<string | null>(null);
 
   function handleSuccess() {
     setShowForm(false);
@@ -31,7 +33,7 @@ function Records() {
           {records.length} {records.length === 1 ? 'record' : 'records'} for {story?.name}
         </div>
         {isLoggedIn && !showForm && (
-          <button className="btn btn-sm btn-outline" onClick={() => setShowForm(true)}>
+          <button className="btn btn-sm btn-outline" onClick={() => { setEditingRecordId(null); setShowForm(true); }}>
             + Log Record
           </button>
         )}
@@ -52,18 +54,39 @@ function Records() {
         <div className="space-y-4">
           {records.map((record) => (
             <div key={record.id} className="border-l-4 border-base-content/20 bg-base-200 px-5 py-4">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-semibold capitalize">Agent {record.user}</span>
-                <span className="text-xs text-base-content/40 font-mono">
-                  {new Date(record.encounteredAt).toLocaleDateString()}
-                </span>
-              </div>
-              {record.notes && (
-                <div className="space-y-2">
-                  {record.notes.split('\n').map((p, i) => (
-                    <p key={i} className="text-sm text-base-content/70 whitespace-pre-line">{p}</p>
-                  ))}
-                </div>
+              {editingRecordId === record.id ? (
+                <EditRecordForm
+                  recordId={record.id}
+                  initialNotes={record.notes ?? ''}
+                  onSuccess={() => { setEditingRecordId(null); refetch(); }}
+                  onCancel={() => setEditingRecordId(null)}
+                />
+              ) : (
+                <>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-semibold capitalize">Agent {record.user}</span>
+                    <div className="flex items-center gap-3">
+                      {record.user === codename && (
+                        <button
+                          className="text-xs text-base-content/40 hover:text-base-content transition-colors"
+                          onClick={() => { setShowForm(false); setEditingRecordId(record.id); }}
+                        >
+                          Edit
+                        </button>
+                      )}
+                      <span className="text-xs text-base-content/40 font-mono">
+                        {new Date(record.encounteredAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                  </div>
+                  {record.notes && (
+                    <div className="space-y-2">
+                      {record.notes.split('\n').map((p, i) => (
+                        <p key={i} className="text-sm text-base-content/70 whitespace-pre-line">{p}</p>
+                      ))}
+                    </div>
+                  )}
+                </>
               )}
             </div>
           ))}
