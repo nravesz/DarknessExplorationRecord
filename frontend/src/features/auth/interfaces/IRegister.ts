@@ -1,5 +1,5 @@
 export interface IRegister {
+  accessToken: string;
   email: string;
-  name: string;
   codename: string;
 }

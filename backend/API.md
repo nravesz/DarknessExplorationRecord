@@ -40,10 +40,13 @@ Register a new user.
 ```
 
 **Response** `201 Created`
+
+The user is automatically logged in. The `refreshToken` is set as an `HttpOnly` cookie (`Max-Age: 7 days`).
+
 ```json
 {
+  "accessToken": "<jwt_access_token>",
   "email": "user@example.com",
-  "name": "Agent Carpincho",
   "codename": "carpincho"
 }
 ```
