@@ -36,7 +36,7 @@ function SideBar() {
       )}
       {role === 'demo_user' && (
         <div className="mx-3 mt-auto px-3 py-3 rounded border border-base-content/20 text-xs text-base-content/50 text-center leading-relaxed">
-          This is a demo. Everything you create will be deleted after an hour. Please, enjoy the demo!
+          This is a demo.<br />Everything you create will be deleted after an hour.<br />Please, enjoy the demo!<br />♥
         </div>
       )}
     </div>
