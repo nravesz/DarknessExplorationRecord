@@ -1,4 +1,4 @@
-# Create an user
+# Create a user (automatically logs in — returns accessToken + sets refreshToken cookie)
 POST http://localhost:3000/users
 Content-Type: application/json
 Accept: application/json
