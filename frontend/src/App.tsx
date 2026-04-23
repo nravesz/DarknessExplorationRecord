@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import RegisterPage from './pages/RegisterPage';
 import ProfileStoryList from './features/profile/ProfileStoryList';
 import ProfileRecordList from './features/profile/ProfileRecordList';
+import EditGhostStoryPage from './pages/EditGhostStoryPage';
 import { ROUTES } from './routes';
 
 const { OVERVIEW, DESCRIPTION, MANUAL, RECORDS } = ROUTES.GHOST_STORY_TABS;
@@ -24,6 +25,7 @@ function App() {
         <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.GHOST_STORIES} element={<GhostStoriesPage />} />
         <Route path={ROUTES.CREATE_GHOST_STORY} element={<CreateGhostStoryPage />} />
+        <Route path={ROUTES.EDIT_GHOST_STORY} element={<EditGhostStoryPage />} />
         <Route path={ROUTES.GHOST_STORY} element={<GhostStory />}>
           <Route index element={<Navigate to={OVERVIEW} replace />} />
           <Route path={OVERVIEW} element={<Overview />} />

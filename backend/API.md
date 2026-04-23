@@ -197,6 +197,50 @@ Authorization: Bearer <accessToken>
 
 ---
 
+### PATCH /ghost-stories/:class/:storyId
+Update a ghost story. **Requires authentication. Only the author can edit.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Path parameters**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| class | string | Ghost class (`A`, `B`, `C`, `D`, `Twilight`) |
+| storyId | number | Numeric story ID within the class |
+
+**Request body** (all fields optional)
+| Field | Type | Description |
+|-------|------|-------------|
+| name | string | Name of the ghost story |
+| summary | string | Short summary |
+| mediumToEnter | string | How to encounter the entity |
+| description | string | Full description |
+
+**Response** `200 OK`
+```json
+{
+  "id": "Qterw-A-1",
+  "name": "Updated Name",
+  "class": "A",
+  "summary": "...",
+  "mediumToEnter": "...",
+  "description": "...",
+  "author": "<codename>"
+}
+```
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid token |
+| 403 | Authenticated user is not the author |
+| 404 | Ghost story not found |
+
+---
+
 ### POST /ghost-stories
 Create a new ghost story. **Requires authentication.**
 

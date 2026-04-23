@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
+import { UpdateGhostStoryDTO } from './dto/update-ghost-story.dto';
 import { GhostStoriesRepository } from './ghost-stories.repository';
 import { IPopulatedGhostStory } from './interfaces/IPopulatedGhostStory';
 
@@ -37,6 +38,11 @@ export class GhostStoriesService {
 
 	async createGhostStory(createGhostStoryDTO: CreateGhostStoryDTO, userId: string) {
 		const doc = await this.repository.createGhostStory(createGhostStoryDTO, userId);
+		return this.toResponse(doc as unknown as IPopulatedGhostStory);
+	}
+
+	async update(ghostClass: string, storyId: number, dto: UpdateGhostStoryDTO, userId: string) {
+		const doc = await this.repository.update(ghostClass, storyId, dto, userId);
 		return this.toResponse(doc as unknown as IPopulatedGhostStory);
 	}
 }

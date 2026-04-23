@@ -1,7 +1,8 @@
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { useGhostStory } from './hooks/useGhostStory';
 import TabBar from "../common/components/TabBar";
-import { ROUTES } from "../../routes";
+import { ROUTES, editGhostStoryPath } from "../../routes";
+import { useAuth } from "../common/hooks/useAuth";
 
 const TABS = [
   { label: 'Overview', to: ROUTES.GHOST_STORY_TABS.OVERVIEW },
@@ -15,9 +16,13 @@ function GhostStory() {
   const ghostClass = parts[parts.length - 2];
   const storyId = parts[parts.length - 1];
   const { story, loading, error } = useGhostStory(ghostClass, storyId);
+  const { codename } = useAuth();
+  const navigate = useNavigate();
 
   if (loading) return <p className="text-base-content/60">Loading...</p>;
   if (error) return <p className="text-error">Error: {error}</p>;
+
+  const isAuthor = story?.author === codename;
 
   return (
 	<div>
@@ -25,7 +30,17 @@ function GhostStory() {
 			<div className="text-xs uppercase tracking-widest text-brand mb-1">Ghost Story</div>
 			<div className="flex items-baseline justify-between">
 				<h1 className="text-4xl font-bold">{story?.name}</h1>
-				<span className="font-mono text-sm text-base-content/40">{story?.id}</span>
+				<div className="flex items-center gap-4">
+					<span className="font-mono text-sm text-base-content/40">{story?.id}</span>
+					{isAuthor && (
+						<button
+							className="btn btn-sm btn-outline"
+							onClick={() => navigate(editGhostStoryPath(id))}
+						>
+							Edit
+						</button>
+					)}
+				</div>
 			</div>
 		</div>
 

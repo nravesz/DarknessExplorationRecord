@@ -2,14 +2,37 @@ import { api } from '../../../api/api';
 import type { IGhostStory } from '../../common/interfaces/IGhostStory';
 import type { IRecord } from '../interfaces/IRecord';
 import type { ICreateRecordPayload } from '../interfaces/ICreateRecordPayload';
+import type { ICreateGhostStoryPayload } from '../interfaces/ICreateGhostStoryPayload';
+import type { IEditGhostStoryPayload } from '../interfaces/IEditGhostStoryPayload';
+
+export type { ICreateGhostStoryPayload, IEditGhostStoryPayload };
 
 export const getGhostStory = async (ghostClass: string, id: string): Promise<IGhostStory> => {
   const response = await api.get<IGhostStory>(`/ghost-stories/${ghostClass}/${id}`);
   return response.data;
 };
 
+export const createGhostStory = async (payload: ICreateGhostStoryPayload): Promise<IGhostStory> => {
+  const response = await api.post<IGhostStory>('/ghost-stories', payload);
+  return response.data;
+};
+
+export const patchGhostStory = async (
+  ghostClass: string,
+  storyId: string,
+  payload: IEditGhostStoryPayload
+): Promise<IGhostStory> => {
+  const response = await api.patch<IGhostStory>(`/ghost-stories/${ghostClass}/${storyId}`, payload);
+  return response.data;
+};
+
 export const getAllRecords = async (): Promise<IRecord[]> => {
   const response = await api.get<IRecord[]>('/records');
+  return response.data;
+};
+
+export const getMyRecords = async (): Promise<IRecord[]> => {
+  const response = await api.get<IRecord[]>('/records/my');
   return response.data;
 };
 
