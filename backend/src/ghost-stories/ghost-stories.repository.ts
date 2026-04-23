@@ -4,12 +4,15 @@ import { GhostStory } from './ghost-stories.schema';
 import { Model } from 'mongoose';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 import { UpdateGhostStoryDTO } from './dto/update-ghost-story.dto';
+import { Record } from '../records/records.schema';
 
 @Injectable()
 export class GhostStoriesRepository {
 	constructor(
 		@InjectModel(GhostStory.name)
-		private ghostStoryModel: Model<GhostStory>
+		private ghostStoryModel: Model<GhostStory>,
+		@InjectModel(Record.name)
+		private recordModel: Model<Record>
 	) {}
 
 	async getAll() {
@@ -32,6 +35,15 @@ export class GhostStoriesRepository {
 		return this.ghostStoryModel
 			.findOneAndUpdate({ class: ghostClass, storyId }, dto, { new: true })
 			.populate('author', 'codename');
+	}
+
+	async delete(ghostClass: string, storyId: number, userId: string) {
+		const story = await this.ghostStoryModel.findOne({ class: ghostClass, storyId });
+		if (!story) throw new NotFoundException('Ghost story not found');
+		if (story.author.toString() !== userId) throw new ForbiddenException();
+
+		await this.recordModel.deleteMany({ ghostStory: story._id });
+		await story.deleteOne();
 	}
 
 	async createGhostStory(dto: CreateGhostStoryDTO, userId: string) {

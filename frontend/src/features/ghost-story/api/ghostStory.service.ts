@@ -26,6 +26,10 @@ export const patchGhostStory = async (
   return response.data;
 };
 
+export const deleteGhostStory = async (ghostClass: string, storyId: string): Promise<void> => {
+  await api.delete(`/ghost-stories/${ghostClass}/${storyId}`);
+};
+
 export const getAllRecords = async (): Promise<IRecord[]> => {
   const response = await api.get<IRecord[]>('/records');
   return response.data;
