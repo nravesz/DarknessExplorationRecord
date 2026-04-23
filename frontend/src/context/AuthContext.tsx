@@ -9,14 +9,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isLoggedIn: !!localStorage.getItem('accessToken'),
     codename: localStorage.getItem('codename'),
     email: localStorage.getItem('email'),
+    role: localStorage.getItem('role'),
   });
 
-  const setAuth = (codename: string, email: string) => {
-    setAuthState({ isLoggedIn: true, codename, email });
+  const setAuth = (codename: string, email: string, role: string) => {
+    setAuthState({ isLoggedIn: true, codename, email, role });
   };
 
   const clearAuth = () => {
-    setAuthState({ isLoggedIn: false, codename: null, email: null });
+    setAuthState({ isLoggedIn: false, codename: null, email: null, role: null });
   };
 
   return (

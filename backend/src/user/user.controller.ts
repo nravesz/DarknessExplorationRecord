@@ -18,7 +18,7 @@ export class UserController {
     ) {
         const user = await this.userService.create(createUserDTO);
 
-        const payload = { sub: user.id, email: user.email };
+        const payload = { sub: user.id, email: user.email, role: user.role };
 
         const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' });
         const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
@@ -30,6 +30,6 @@ export class UserController {
             maxAge: 7 * 24 * 60 * 60 * 1000,
         });
 
-        return { accessToken, email: user.email, codename: user.codename };
+        return { accessToken, email: user.email, codename: user.codename, role: user.role };
     }
 }

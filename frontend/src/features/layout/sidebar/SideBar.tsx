@@ -6,7 +6,7 @@ import SideBarButton from './SideBarButton';
 import Logo from '../Logo';
 
 function SideBar() {
-  const { isLoggedIn, codename } = useAuth();
+  const { isLoggedIn, codename, role } = useAuth();
   const { mutate: logout } = useLogout();
 
   return (
@@ -33,6 +33,11 @@ function SideBar() {
         </button>
       ) : (
         <SideBarButton name={"Login"} icon={LogIn} route={ROUTES.LOGIN} />
+      )}
+      {role === 'demo_user' && (
+        <div className="mx-3 mt-auto px-3 py-3 rounded border border-base-content/20 text-xs text-base-content/50 text-center leading-relaxed">
+          This is a demo. Everything you create will be deleted after an hour. Please, enjoy the demo!
+        </div>
       )}
     </div>
   );

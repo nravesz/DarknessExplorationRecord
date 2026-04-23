@@ -12,7 +12,7 @@ export class AuthController {
 	async login(
 		@Body() createUserDTO: LoginDTO,
 		@Res({ passthrough: true }) res: Response
-	): Promise<{ accessToken: string; email: string; codename: string }> {
+	): Promise<{ accessToken: string; email: string; codename: string; role: string }> {
 		const data: LoginResponseDTO = await this.authService.login(createUserDTO);
 
 		res.cookie('refreshToken', data.refreshToken, {
@@ -22,7 +22,7 @@ export class AuthController {
 			maxAge: 7 * 24 * 60 * 60 * 1000,
 		});
 
-		return { accessToken: data.accessToken, email: data.email, codename: data.codename };
+		return { accessToken: data.accessToken, email: data.email, codename: data.codename, role: data.role };
 	}
 
 	@Post('refresh')

@@ -41,13 +41,14 @@ Register a new user.
 
 **Response** `201 Created`
 
-The user is automatically logged in. The `refreshToken` is set as an `HttpOnly` cookie (`Max-Age: 7 days`).
+The user is automatically logged in. The `refreshToken` is set as an `HttpOnly` cookie (`Max-Age: 7 days`). All newly created users receive the `demo_user` role. Admins are assigned manually in the database.
 
 ```json
 {
   "accessToken": "<jwt_access_token>",
   "email": "user@example.com",
-  "codename": "carpincho"
+  "codename": "carpincho",
+  "role": "demo_user"
 }
 ```
 
@@ -77,7 +78,8 @@ Log in and receive tokens.
 {
   "accessToken": "<jwt_access_token>",
   "email": "user@example.com",
-  "codename": "carpincho"
+  "codename": "carpincho",
+  "role": "admin" | "demo_user"
 }
 ```
 
@@ -523,6 +525,15 @@ Authorization: Bearer <accessToken>
 | 400 | Validation failed |
 | 401 | Missing or invalid token |
 | 404 | Ghost story not found |
+
+---
+
+## Roles
+
+| Role | Description |
+|------|-------------|
+| `admin` | Full access. Assigned manually in the database. |
+| `demo_user` | Default role for all registered users. Can create ghost stories and records, but their account, ghost stories, and records are automatically deleted 1 hour after registration. |
 
 ---
 

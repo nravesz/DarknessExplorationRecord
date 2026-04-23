@@ -14,7 +14,8 @@ export function useRegister() {
       localStorage.setItem('accessToken', data.accessToken);
       localStorage.setItem('codename', data.codename);
       localStorage.setItem('email', data.email);
-      setAuth(data.codename, data.email);
+      localStorage.setItem('role', data.role);
+      setAuth(data.codename, data.email, data.role);
       navigate(ROUTES.HOME);
     },
   });

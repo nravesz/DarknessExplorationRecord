@@ -9,7 +9,7 @@ const TABS = [
 ];
 
 function Profile() {
-  const { email, codename } = useAuth();
+  const { email, codename, role } = useAuth();
 
   return (
     <div className="flex flex-col gap-6">
@@ -23,6 +23,11 @@ function Profile() {
         <div className="flex items-center gap-2">
           <span className="text-sm text-base-content/60 uppercase tracking-wide">Email</span>
           <span className="text-sm">{email}</span>
+        </div>
+        <div className="border-t border-base-content/10"></div>
+        <div className="flex items-center gap-2">
+          <span className="text-sm text-base-content/60 uppercase tracking-wide">Role</span>
+          <span className="text-sm">{role === 'demo_user' ? 'Demo User' : 'Admin'}</span>
         </div>
       </div>
       <TabBar tabs={TABS} />
