@@ -409,6 +409,72 @@ GET /records/A/1
 
 ---
 
+### DELETE /records/:id
+Delete a record. **Requires authentication. Only the record's author can delete it.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Path parameters**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| id | string | MongoDB ObjectId of the record |
+
+**Response** `204 No Content`
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid token |
+| 403 | Authenticated user is not the author |
+| 404 | Record not found |
+
+---
+
+### PATCH /records/:id
+Update a record's notes. **Requires authentication. Only the author can edit.**
+
+**Headers**
+```
+Authorization: Bearer <accessToken>
+```
+
+**Path parameters**
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| id | string | MongoDB ObjectId of the record |
+
+**Request body** (all fields optional)
+| Field | Type | Description |
+|-------|------|-------------|
+| notes | string | Updated personal notes |
+
+**Response** `200 OK`
+```json
+{
+  "id": "<record_id>",
+  "ghostStory": {
+    "id": "Qterw-A-1",
+    "name": "Black Cat",
+    "class": "A"
+  },
+  "user": "<codename>",
+  "notes": "Updated notes.",
+  "encounteredAt": "2026-04-10T00:00:00.000Z"
+}
+```
+
+**Error responses**
+| Status | Reason |
+|--------|--------|
+| 401 | Missing or invalid token |
+| 403 | Authenticated user is not the author |
+| 404 | Record not found |
+
+---
+
 ### POST /records
 Log a new record for a ghost story. **Requires authentication.**
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRecordDTO } from './dto/create-record.dto';
+import { UpdateRecordDTO } from './dto/update-record.dto';
 import { RecordsRepository } from './records.repository';
 import { IPopulatedRecord } from './interfaces/IPopulatedRecord';
 
@@ -34,6 +35,15 @@ export class RecordsService {
 	async getByGhostStory(ghostClass: string, storyId: number) {
 		const docs = await this.repository.getByGhostStory(ghostClass, storyId);
 		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedRecord));
+	}
+
+	async delete(recordId: string, userId: string) {
+		await this.repository.delete(recordId, userId);
+	}
+
+	async update(recordId: string, dto: UpdateRecordDTO, userId: string) {
+		const doc = await this.repository.update(recordId, dto, userId);
+		return this.toResponse(doc as unknown as IPopulatedRecord);
 	}
 
 	async create(dto: CreateRecordDTO, userId: string) {
