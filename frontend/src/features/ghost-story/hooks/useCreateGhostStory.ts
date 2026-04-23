@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import { createGhostStory, type ICreateGhostStoryPayload } from '../api/ghostStory.service';
+import { createGhostStory } from '../api/ghostStory.service';
+import type { ICreateGhostStoryPayload } from '../interfaces/ICreateGhostStoryPayload';
 import { ghostStoryPath } from '../../../routes';
 
 const EMPTY_FORM: ICreateGhostStoryPayload = {

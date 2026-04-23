@@ -5,6 +5,7 @@ export const ROUTES = {
   GHOST_STORIES: "/ghost-stories",
   CREATE_GHOST_STORY: "/ghost-stories/new",
   GHOST_STORY: "/ghost-stories/:id",
+  EDIT_GHOST_STORY: "/ghost-stories/:id/edit",
   USER: "/user",
   SETTINGS: "/settings",
   GHOST_STORY_TABS: {
@@ -20,3 +21,4 @@ export const ROUTES = {
 };
 
 export const ghostStoryPath = (id: string) => `/ghost-stories/${id}`;
+export const editGhostStoryPath = (id: string) => `/ghost-stories/${id}/edit`;
