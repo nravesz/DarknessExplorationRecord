@@ -1,8 +1,6 @@
 import { type LucideIcon } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
-import { useNavigate } from 'react-router-dom';
-
 interface Props {
   name: string;
   icon: LucideIcon;
@@ -10,8 +8,6 @@ interface Props {
 }
 
 function SideBarButton({ name, icon: Icon, route }: Props) {
-  const navigate = useNavigate();
-
   return (
     <NavLink
       to={route}
