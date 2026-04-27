@@ -3,4 +3,5 @@ export class LoginResponseDTO {
 	refreshToken: string;
 	email: string;
 	codename: string;
+	role: string;
 }

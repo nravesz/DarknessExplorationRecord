@@ -17,24 +17,17 @@ export class AuthService {
 		if (!user) {
 			throw new UnauthorizedException('Invalid credentials');
 		}
-		const payload = {
-			sub: user.id,
-			email: user.email,
-		};
+		const payload = { sub: user.id, email: user.email, role: user.role };
 
-		const accessToken = this.jwtService.sign(payload, {
-			expiresIn: '15m',
-		});
-
-		const refreshToken = this.jwtService.sign(payload, {
-			expiresIn: '7d',
-		});
+		const accessToken = this.jwtService.sign(payload, { expiresIn: '15m' });
+		const refreshToken = this.jwtService.sign(payload, { expiresIn: '7d' });
 
 		const doc: LoginResponseDTO = {
 			accessToken,
 			refreshToken,
 			email: user.email,
 			codename: user.codename,
+			role: user.role,
 		};
 		return doc;
 	}
@@ -50,7 +43,7 @@ export class AuthService {
 
 	async validateUser(
 		createUserDTO: LoginDTO
-	): Promise<{ id: string; email: string; codename: string } | null> {
+	): Promise<{ id: string; email: string; codename: string; role: string } | null> {
 		const user = await this.usersService.findByEmail(createUserDTO.email);
 		if (!user) return null;
 
