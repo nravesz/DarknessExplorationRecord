@@ -26,6 +26,12 @@ function GhostStory() {
 
   return (
 	<div>
+		<button
+			onClick={() => navigate(ROUTES.GHOST_STORIES)}
+			className="flex items-center gap-1 text-sm text-base-content/50 hover:text-base-content transition-colors mb-6"
+		>
+			<span>&#8592;</span> Back to Ghost Stories
+		</button>
 		<div className="border-l-4 border-brand pl-4 mb-8">
 			<div className="text-xs uppercase tracking-widest text-brand mb-1">Ghost Story</div>
 			<div className="flex items-baseline justify-between">

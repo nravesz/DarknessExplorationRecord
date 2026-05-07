@@ -1,11 +1,7 @@
 import Register from '../features/auth/Register';
 
 function RegisterPage() {
-  return (
-    <div>
-      <Register />
-    </div>
-  );
+  return <Register />;
 }
 
 export default RegisterPage;

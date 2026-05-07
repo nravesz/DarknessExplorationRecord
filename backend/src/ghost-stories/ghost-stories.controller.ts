@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Patch, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseIntPipe, Patch, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { GhostStoriesService } from './ghost-stories.service';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 import { UpdateGhostStoryDTO } from './dto/update-ghost-story.dto';
@@ -12,6 +12,11 @@ export class GhostStoriesController {
 	async getAll() {
 		const ghostStory = await this.ghostStoriesService.getAll();
 		return ghostStory;
+	}
+
+	@Get('recent')
+	async getRecent(@Query('limit', new ParseIntPipe({ optional: true })) limit: number = 5) {
+		return this.ghostStoriesService.getRecent(limit);
 	}
 
 	@Get('my')

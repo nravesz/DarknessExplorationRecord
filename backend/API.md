@@ -143,6 +143,36 @@ Get all ghost stories.
 
 ---
 
+### GET /ghost-stories/recent
+Get the most recently created ghost stories.
+
+**Query parameters**
+| Parameter | Type | Required | Default | Description |
+|-----------|------|----------|---------|-------------|
+| limit | number | no | 5 | Number of stories to return |
+
+**Example**
+```
+GET /ghost-stories/recent?limit=10
+```
+
+**Response** `200 OK`
+```json
+[
+  {
+    "id": "Qterw-A-1",
+    "name": "Black Cat",
+    "class": "A",
+    "summary": "...",
+    "mediumToEnter": "...",
+    "description": "...",
+    "author": "<codename>"
+  }
+]
+```
+
+---
+
 ### GET /ghost-stories/:class/:storyId
 Get a single ghost story by class and story ID.
 
