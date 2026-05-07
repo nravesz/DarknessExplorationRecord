@@ -6,7 +6,7 @@ import GhostStory from './features/ghost-story/GhostStory';
 import Overview from './features/ghost-story/Overview';
 import CreateGhostStoryPage from './pages/CreateGhostStoryPage';
 import GhostStoriesPage from './pages/GhostStoriesPage';
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/ProfilePage';
 import RegisterPage from './pages/RegisterPage';
@@ -22,7 +22,7 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path={ROUTES.HOME} element={<Home />} />
+        <Route path={ROUTES.HOME} element={<HomePage />} />
         <Route path={ROUTES.GHOST_STORIES} element={<GhostStoriesPage />} />
         <Route path={ROUTES.CREATE_GHOST_STORY} element={<CreateGhostStoryPage />} />
         <Route path={ROUTES.EDIT_GHOST_STORY} element={<EditGhostStoryPage />} />

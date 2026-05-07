@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useRecentGhostStories } from '../features/ghost-stories/hooks/useRecentGhostStories';
-import GhostStoryItem from '../features/ghost-stories/GhostStoryItem';
-import { ghostStoryPath } from '../routes';
+import { useRecentGhostStories } from '../ghost-stories/hooks/useRecentGhostStories';
+import GhostStoryItem from '../ghost-stories/GhostStoryItem';
+import { ghostStoryPath } from '../../routes';
 
 function Home() {
   const { stories, loading, error } = useRecentGhostStories();
