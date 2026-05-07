@@ -10,3 +10,8 @@ export const getMyGhostStories = async (): Promise<IGhostStory[]> => {
   const response = await api.get<IGhostStory[]>('/ghost-stories/my');
   return response.data;
 };
+
+export const getRecentGhostStories = async (limit = 5): Promise<IGhostStory[]> => {
+  const response = await api.get<IGhostStory[]>(`/ghost-stories/recent?limit=${limit}`);
+  return response.data;
+};

@@ -25,6 +25,11 @@ export class GhostStoriesService {
 		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedGhostStory));
 	}
 
+	async getRecent(limit: number) {
+		const docs = await this.repository.getRecent(limit);
+		return docs.map((doc) => this.toResponse(doc as unknown as IPopulatedGhostStory));
+	}
+
 	async getOne(ghostClass: string, storyId: number) {
 		const doc = await this.repository.getOne(ghostClass, storyId);
 		if (!doc) throw new NotFoundException('Ghost story not found');

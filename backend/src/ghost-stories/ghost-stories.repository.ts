@@ -19,6 +19,10 @@ export class GhostStoriesRepository {
 		return this.ghostStoryModel.find().populate('author', 'codename');
 	}
 
+	async getRecent(limit: number) {
+		return this.ghostStoryModel.find().sort({ _id: -1 }).limit(limit).populate('author', 'codename');
+	}
+
 	async getOne(ghostClass: string, storyId: number) {
 		return this.ghostStoryModel.findOne({ class: ghostClass, storyId }).populate('author', 'codename');
 	}
