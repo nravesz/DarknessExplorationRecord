@@ -9,7 +9,7 @@ function Home() {
 
   return (
     <div className="flex flex-col items-center pt-20">
-      <h1 className="text-6xl font-bold text-center">Darkness Exploration Records</h1>
+      <h1 className="text-6xl font-bold text-center bg-gradient-to-r from-black/70 via-gray-300 to-black/70 bg-clip-text text-transparent">Darkness Exploration Records</h1>
       <p className="mt-4 text-center text-gray-500">A dashboard to register, monitor and manage any kind of ghost stories</p>
 
       <div className="w-full max-w-2xl mt-12">
