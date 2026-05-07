@@ -53,7 +53,7 @@ export class CleanupService {
 	@Cron('*/5 * * * *')
 	async cleanupOrphanedStories() {
 		try {
-			const allUserIds = await this.userModel.distinct('_id');
+			const allUserIds = (await this.userModel.distinct('_id')) as Types.ObjectId[];
 			const orphaned = await this.ghostStoryModel.find({ author: { $nin: allUserIds } });
 
 			if (orphaned.length === 0) return;
