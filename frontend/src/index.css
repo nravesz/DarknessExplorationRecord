@@ -4,3 +4,8 @@
 @theme {
   --color-brand: #ff3131;
 }
+
+:root, [data-theme] {
+  --color-primary: #ff3131;
+  --color-primary-content: #ffffff;
+}
