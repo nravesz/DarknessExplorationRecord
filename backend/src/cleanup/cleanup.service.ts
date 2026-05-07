@@ -49,4 +49,22 @@ export class CleanupService {
 			this.logger.error('Cleanup failed', err);
 		}
 	}
+
+	@Cron('*/5 * * * *')
+	async cleanupOrphanedStories() {
+		try {
+			const allUserIds = await this.userModel.distinct('_id');
+			const orphaned = await this.ghostStoryModel.find({ author: { $nin: allUserIds } });
+
+			if (orphaned.length === 0) return;
+
+			const orphanedIds = orphaned.map((s) => s._id);
+			await this.recordModel.deleteMany({ ghostStory: { $in: orphanedIds } });
+			await this.ghostStoryModel.deleteMany({ _id: { $in: orphanedIds } });
+
+			this.logger.log(`Cleaned up ${orphaned.length} orphaned story(s)`);
+		} catch (err) {
+			this.logger.error('Orphan cleanup failed', err);
+		}
+	}
 }
