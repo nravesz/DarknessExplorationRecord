@@ -17,37 +17,36 @@ export class CleanupService {
 		@InjectModel(Record.name) private recordModel: Model<Record>
 	) {}
 
-	@Cron(CronExpression.EVERY_HOUR)
+	@Cron('*/5 * * * *')
 	async cleanupExpiredDemoUsers() {
-		const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
-		// ObjectId encodes creation time — users created before oneHourAgo have a smaller ObjectId
-		const cutoffId = Types.ObjectId.createFromTime(Math.floor(oneHourAgo.getTime() / 1000));
+		this.logger.log('Running demo user cleanup...');
+		try {
+			const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+			const cutoffId = Types.ObjectId.createFromTime(Math.floor(fiveMinutesAgo.getTime() / 1000));
 
-		const expiredUsers = await this.userModel.find({
-			role: UserRole.DEMO_USER,
-			_id: { $lt: cutoffId },
-		});
+			const expiredUsers = await this.userModel.find({
+				role: UserRole.DEMO_USER,
+				_id: { $lt: cutoffId },
+			});
 
-		if (expiredUsers.length === 0) return;
+			if (expiredUsers.length === 0) {
+				this.logger.log('No expired demo users found.');
+				return;
+			}
 
-		const userIds = expiredUsers.map((u) => u._id);
+			const userIds = expiredUsers.map((u) => u._id);
 
-		// Find GS created by expired users
-		const expiredStories = await this.ghostStoryModel.find({ author: { $in: userIds } });
-		const storyIds = expiredStories.map((s) => s._id);
+			const expiredStories = await this.ghostStoryModel.find({ author: { $in: userIds } });
+			const storyIds = expiredStories.map((s) => s._id);
 
-		// Delete all records on those GS (from any user)
-		await this.recordModel.deleteMany({ ghostStory: { $in: storyIds } });
+			await this.recordModel.deleteMany({ ghostStory: { $in: storyIds } });
+			await this.recordModel.deleteMany({ user: { $in: userIds } });
+			await this.ghostStoryModel.deleteMany({ _id: { $in: storyIds } });
+			await this.userModel.deleteMany({ _id: { $in: userIds } });
 
-		// Delete any remaining records created by the expired users (on other people's GS)
-		await this.recordModel.deleteMany({ user: { $in: userIds } });
-
-		// Delete the GS
-		await this.ghostStoryModel.deleteMany({ _id: { $in: storyIds } });
-
-		// Delete the users
-		await this.userModel.deleteMany({ _id: { $in: userIds } });
-
-		this.logger.log(`Cleaned up ${expiredUsers.length} expired demo user(s)`);
+			this.logger.log(`Cleaned up ${expiredUsers.length} expired demo user(s)`);
+		} catch (err) {
+			this.logger.error('Cleanup failed', err);
+		}
 	}
 }
