@@ -7,6 +7,8 @@ import { UserRole } from '../user/enums/user-role.enum';
 import { GhostStory } from '../ghost-stories/ghost-stories.schema';
 import { Record } from '../records/records.schema';
 
+const ONE_HOUR = ONE_HOUR;
+
 @Injectable()
 export class CleanupService {
 	private readonly logger = new Logger(CleanupService.name);
@@ -17,7 +19,7 @@ export class CleanupService {
 		@InjectModel(Record.name) private recordModel: Model<Record>
 	) {}
 
-	@Cron('*/5 * * * *')
+	@Cron(ONE_HOUR)
 	async cleanupExpiredDemoUsers() {
 		this.logger.log('Running demo user cleanup...');
 		try {
@@ -50,7 +52,7 @@ export class CleanupService {
 		}
 	}
 
-	@Cron('*/5 * * * *')
+	@Cron(ONE_HOUR)
 	async cleanupOrphanedStories() {
 		try {
 			const allUserIds = (await this.userModel.distinct('_id')) as Types.ObjectId[];
