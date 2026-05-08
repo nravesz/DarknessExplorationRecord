@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { GhostStory } from './ghost-stories.schema';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { CreateGhostStoryDTO } from './dto/create-ghost-story.dto';
 import { UpdateGhostStoryDTO } from './dto/update-ghost-story.dto';
 import { Record } from '../records/records.schema';
@@ -64,7 +64,7 @@ export class GhostStoriesRepository {
 				storyId++;
 			}
 
-			const doc = new this.ghostStoryModel({ ...dto, storyId, author: userId });
+			const doc = new this.ghostStoryModel({ ...dto, storyId, author: new Types.ObjectId(userId) });
 			const saved = await doc.save({ session });
 
 			await session.commitTransaction();
