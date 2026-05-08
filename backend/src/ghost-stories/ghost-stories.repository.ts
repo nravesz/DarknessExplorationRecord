@@ -64,7 +64,7 @@ export class GhostStoriesRepository {
 				storyId++;
 			}
 
-			const doc = new this.ghostStoryModel({ ...dto, storyId, author: userId });
+			const doc = new this.ghostStoryModel({ ...dto, storyId, author: new Types.ObjectId(userId) });
 			const saved = await doc.save({ session });
 
 			await session.commitTransaction();

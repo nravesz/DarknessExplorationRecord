@@ -55,8 +55,18 @@ export class CleanupService {
 	@Cron(ONE_HOUR)
 	async cleanupOrphanedStories() {
 		try {
-			const allUserIds = (await this.userModel.distinct('_id')) as Types.ObjectId[];
-			const orphaned = await this.ghostStoryModel.find({ author: { $nin: allUserIds } });
+			const orphaned = await this.ghostStoryModel.aggregate<{ _id: Types.ObjectId }>([
+				{
+					$lookup: {
+						from: this.userModel.collection.name,
+						localField: 'author',
+						foreignField: '_id',
+						as: 'authorDoc',
+					},
+				},
+				{ $match: { authorDoc: { $size: 0 } } },
+				{ $project: { _id: 1 } },
+			]);
 
 			if (orphaned.length === 0) return;
 
