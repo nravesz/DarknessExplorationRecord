@@ -7,6 +7,8 @@ import { UserRole } from '../user/enums/user-role.enum';
 import { GhostStory } from '../ghost-stories/ghost-stories.schema';
 import { Record } from '../records/records.schema';
 
+const ONE_HOUR = ONE_HOUR;
+
 @Injectable()
 export class CleanupService {
 	private readonly logger = new Logger(CleanupService.name);
@@ -17,7 +19,7 @@ export class CleanupService {
 		@InjectModel(Record.name) private recordModel: Model<Record>
 	) {}
 
-	@Cron('*/5 * * * *')
+	@Cron(ONE_HOUR)
 	async cleanupExpiredDemoUsers() {
 		this.logger.log('Running demo user cleanup...');
 		try {
@@ -47,6 +49,24 @@ export class CleanupService {
 			this.logger.log(`Cleaned up ${expiredUsers.length} expired demo user(s)`);
 		} catch (err) {
 			this.logger.error('Cleanup failed', err);
+		}
+	}
+
+	@Cron(ONE_HOUR)
+	async cleanupOrphanedStories() {
+		try {
+			const allUserIds = (await this.userModel.distinct('_id')) as Types.ObjectId[];
+			const orphaned = await this.ghostStoryModel.find({ author: { $nin: allUserIds } });
+
+			if (orphaned.length === 0) return;
+
+			const orphanedIds = orphaned.map((s) => s._id);
+			await this.recordModel.deleteMany({ ghostStory: { $in: orphanedIds } });
+			await this.ghostStoryModel.deleteMany({ _id: { $in: orphanedIds } });
+
+			this.logger.log(`Cleaned up ${orphaned.length} orphaned story(s)`);
+		} catch (err) {
+			this.logger.error('Orphan cleanup failed', err);
 		}
 	}
 }
