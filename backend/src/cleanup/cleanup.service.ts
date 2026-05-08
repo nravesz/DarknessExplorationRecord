@@ -7,7 +7,7 @@ import { UserRole } from '../user/enums/user-role.enum';
 import { GhostStory } from '../ghost-stories/ghost-stories.schema';
 import { Record } from '../records/records.schema';
 
-const ONE_HOUR = ONE_HOUR;
+const ONE_HOUR = CronExpression.EVERY_HOUR;
 
 @Injectable()
 export class CleanupService {
