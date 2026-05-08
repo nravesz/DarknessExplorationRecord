@@ -15,7 +15,7 @@ function SideBar() {
         <Logo />
       </div>
       {codename && (
-        <div className="text-center">
+        <div className="text-center mb-8">
           <div className="text-xs uppercase tracking-widest text-base-content/40 mb-1">Welcome</div>
           <div className="text-sm font-semibold">Agent {codename}</div>
         </div>
